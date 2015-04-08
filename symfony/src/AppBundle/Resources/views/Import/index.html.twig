@@ -1,5 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'AppBundle::base.html.twig' %}
 
 {% block body %}
     IMPORT!!
+    result: {{ dbg|length}}
+    <div>
+        <ul>
+            {% for entry in dbg %}
+                <li>{{ entry }}</li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock %}
