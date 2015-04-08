@@ -9,18 +9,22 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class ImportController extends Controller
 {
+    private $start, $end;
+
     /**
      * @Route("/import", name="import")
      */
     public function indexAction()
     {
+        $this->start = $this->container->getParameter("acq_start");
+        $this->end = $this->container->getParameter("acq_end");
         $dir = $this->fetchDir();
         $validFiles = $this->getValidFiles($dir);
         $this->importValidFiles($validFiles);
         return $this->render('AppBundle:Import:index.html.twig', [
             'dbg' => $validFiles,
-            'start' => $this->container->getParameter("acq_start_date") + 0,
-            'end' => $this->container->getParameter("acq_end_date") + 0,
+            'start' => $this->start,
+            'end' => $this->end,
         ]);
 
     }
@@ -40,8 +44,8 @@ class ImportController extends Controller
      */
     private function getValidFiles($dir)
     {
-        $start = $this->container->getParameter("acq_start_date") + 0;
-        $end = $this->container->getParameter("acq_end_date") + 0;
+        $start = intval($this->start);
+        $end = intval($this->end);
         $reg = '/a\d{3,3}z(\d{6,6})/';
         $validFiles = [];
         foreach ($dir as $entry) {
