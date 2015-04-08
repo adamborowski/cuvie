@@ -18,5 +18,5 @@ parameters:
     #---------------
     nbp_index: http://www.nbp.pl/kursy/xml/dir.txt
     nbp_base: http://www.nbp.pl/kursy/xml/
-    acq_start: 070101
-    acq_end: 141231
+    acq_start: "070101"
+    acq_end: "141231"
