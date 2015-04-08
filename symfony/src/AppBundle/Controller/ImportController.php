@@ -17,7 +17,11 @@ class ImportController extends Controller
         $dir = $this->fetchDir();
         $validFiles = $this->getValidFiles($dir);
         $this->importValidFiles($validFiles);
-        return $this->render('AppBundle:Import:index.html.twig', ['dbg' => $validFiles]);
+        return $this->render('AppBundle:Import:index.html.twig', [
+            'dbg' => $validFiles,
+            'start' => $this->container->getParameter("acq_start_date") + 0,
+            'end' => $this->container->getParameter("acq_end_date") + 0,
+        ]);
 
     }
 
