@@ -11,6 +11,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\DomCrawler\Crawler;
 
+ini_set('memory_limit', '-1');
+set_time_limit(0);
 class ImportController extends Controller
 {
     /**
