@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * @ORM\Entity
  * @ORM\Table(name="entry")
@@ -24,6 +25,7 @@ class Entry
     /**
      * @ORM\ManyToOne(targetEntity="Currency", inversedBy="entries")
      */
+
     protected $currency;
 
     /**

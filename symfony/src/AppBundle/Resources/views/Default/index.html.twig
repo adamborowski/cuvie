@@ -31,6 +31,7 @@
                     <th>{{ 'tab.min'|trans }}</th>
                     <th>{{ 'tab.max'|trans }}</th>
                     <th>{{ 'tab.avg'|trans }}</th>
+                    <th>{{ 'tab.ratio'|trans }}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -44,6 +45,7 @@
                         <td>{{ currency.min_value|number_format(4, '.', ',') }}</td>
                         <td>{{ currency.max_value|number_format(4, '.', ',') }}</td>
                         <td>{{ currency.avg_value|number_format(4, '.', ',') }}</td>
+                        <td>{{ currency.ratio }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>

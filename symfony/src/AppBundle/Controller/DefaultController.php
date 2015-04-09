@@ -5,6 +5,9 @@ namespace AppBundle\Controller;
 use Doctrine\ORM\EntityManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 class DefaultController extends Controller
 {
@@ -14,7 +17,7 @@ class DefaultController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery("select max(e.value) as max_value, min(e.value) as min_value, avg(e.value) as avg_value, max(c.id) as id, max(c.label) as label from AppBundle\Entity\Entry e JOIN e.currency c group BY e.currency order by label asc");
+        $query = $em->createQuery("select max(e.value) as max_value, min(e.value) as min_value, avg(e.value) as avg_value, max(c.id) as id, max(c.label) as label, max(c.ratio) as ratio from AppBundle\Entity\Entry e JOIN e.currency c group BY e.currency order by label asc");
         $currencies = $query->getResult();
         $start = \DateTime::createFromFormat('ymd', $this->container->getParameter("acq_start"));
         $end = \DateTime::createFromFormat('ymd', $this->container->getParameter("acq_end"));
@@ -31,11 +34,25 @@ class DefaultController extends Controller
          * @var $em EntityManager
          */
         $em = $this->getDoctrine()->getManager();
-        $currency = $em->find("AppBundle\Entity\Currency", $currencyCode);
+        $currency = $em->find("AppBundle\\Entity\\Currency", $currencyCode);
         $query = $em->createQuery("select max(e.value) as max_value, min(e.value) as min_value, avg(e.value) as avg_value from AppBundle\Entity\Entry e where e.currency=:currency");
         $query->setParameter("currency", $currency);
         $attrs = $query->getSingleResult();
-        return $this->render('AppBundle:Default:preview.html.twig', ['currency' => $currency, 'attrs' => $attrs]);
+
+        //
+        $normalizer = new GetSetMethodNormalizer();
+        $normalizer->setIgnoredAttributes(array('currency'));
+        $callback = function ($dateTime) {
+            return $dateTime instanceof \DateTime
+                ? $dateTime->format('Y-m-d')
+                : '';
+        };
+        $normalizer->setCallbacks(array('date' => $callback));
+        $serializer = new Serializer(array($normalizer), array('json' => new JsonEncoder()));
+
+        $json = $serializer->serialize($currency->getEntries()->toArray(), 'json');
+        //
+        return $this->render('AppBundle:Default:preview.html.twig', ['currency' => $currency, 'attrs' => $attrs, 'json' => $json]);
     }
 
     /**
@@ -53,7 +70,7 @@ class DefaultController extends Controller
             $currencies = [];
         } else {
             $em = $this->getDoctrine()->getManager();
-            $query = $em->createQuery("select max(e.value) as max_value, min(e.value) as min_value, avg(e.value) as avg_value, max(c.id) as id, max(c.label) as label from AppBundle\Entity\Entry e JOIN e.currency c
+            $query = $em->createQuery("select max(e.value) as max_value, min(e.value) as min_value, avg(e.value) as avg_value, max(c.id) as id, max(c.label) as label, max(c.ratio) as ratio from AppBundle\Entity\Entry e JOIN e.currency c
  where lower(c.id) like lower(:str) or lower(c.label) like lower(:str)
  group BY e.currency order by label asc");
             $query->setParameter("str", '%' . trim($str) . '%');

@@ -95,7 +95,8 @@ class ImportController extends Controller
         $records = [];
         foreach ($crawler->filter('pozycja') as $dom) {
             $currency = $this->ensureCurrency($dom);
-            $records[] = $this->addRecord($dom, $date, $currency);
+//            $records[] = $this->addRecord($dom, $date, $currency);
+            $this->addRecord($dom, $date, $currency);
         };
         return $records;
     }
@@ -107,6 +108,8 @@ class ImportController extends Controller
             $instance = new Currency();
             $instance->setId($id);
             $instance->setLabel($dom->getElementsByTagName('nazwa_waluty')->item(0)->nodeValue);
+            $instance->setRatio($dom->getElementsByTagName('przelicznik')->item(0)->nodeValue);
+
             $this->em->persist($instance);
             $this->currencies[$id] = $instance;
         }

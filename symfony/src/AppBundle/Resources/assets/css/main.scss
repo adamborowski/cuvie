@@ -6,9 +6,11 @@
 
 .navbar-brand {
   padding: 0 10px;
+  vertical-align: middle;
   img {
     display: inline-block;
     vertical-align: middle;
+    margin:8px 0px;
   }
   font-family: "Droid Sans", sans-serif;
   span:first-child {
@@ -37,13 +39,29 @@
     }
   }
 }
-.a-highlight{
-//  color: #884390;
+
+.a-highlight {
+  //  color: #884390;
   color: #00aa00;
   font-weight: bold;
-  display:inline-block;
+  display: inline-block;
   background: #fff430;
-  line-height:1em;
-  padding:2px 1px;
+  line-height: 1em;
+  padding: 2px 1px;
   margin: 0px -1px;
+}
+
+$previewHeight: 300px;
+
+#currency-chart {
+//  width: 700px;
+  height: $previewHeight;
+//  display: inline-block;
+}
+
+.a-chart-table-container {
+//  display: inline-block;
+  height: $previewHeight;
+//  width: 235px;
+  overflow: auto;
 }

@@ -20,9 +20,30 @@ class Currency
      */
     protected $label;
     /**
+     * @ORM\Column(type="float")
+     */
+    protected $ratio;
+    /**
      * @ORM\OneToMany(targetEntity="Entry", mappedBy="currency")
+     * @ORM\OrderBy({"date" = "ASC"})
      */
     protected $entries;
+
+    /**
+     * @return mixed
+     */
+    public function getRatio()
+    {
+        return $this->ratio;
+    }
+
+    /**
+     * @param mixed $ratio
+     */
+    public function setRatio($ratio)
+    {
+        $this->ratio = $ratio;
+    }
 
     /**
      * @return mixed
