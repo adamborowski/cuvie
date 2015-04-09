@@ -1,8 +1,24 @@
-@import  "compass/reset";
+//@import  "compass/reset";
 
-ul {
-  li {
-    margin: 0;
-    padding: 0.2em;
+.a-page-content {
+  margin-top: 64px;
+}
+
+.navbar-brand {
+  padding: 0 10px;
+  img {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  strong {
+    color: #155d9a;
+  }
+}
+
+.a-table {
+  tbody {
+    tr {
+      cursor: pointer;
+    }
   }
 }

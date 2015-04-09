@@ -1,0 +1,23 @@
+/* line 3, assetic_compassfp2Z8j.scss */
+.a-page-content {
+  margin-top: 64px;
+}
+
+/* line 7, assetic_compassfp2Z8j.scss */
+.navbar-brand {
+  padding: 0 10px;
+}
+/* line 9, assetic_compassfp2Z8j.scss */
+.navbar-brand img {
+  display: inline-block;
+  vertical-align: middle;
+}
+/* line 13, assetic_compassfp2Z8j.scss */
+.navbar-brand strong {
+  color: #155d9a;
+}
+
+/* line 20, assetic_compassfp2Z8j.scss */
+.a-table tbody tr {
+  cursor: pointer;
+}

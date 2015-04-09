@@ -1,0 +1,28 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block body %}
+    Currencies
+    result: {{ currencies|length }}
+    <table class="a-table table table-striped table-hover">
+        <thead>
+        <tr>
+            <th>Symbol</th>
+            <th>Name</th>
+            <th>Min</th>
+            <th>Max</th>
+            <th>Avg</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for currency in currencies %}
+            <tr onclick="location.href='{{ path('preview',{currencyCode:currency.id}) }}'">
+                <td>{{ currency.id }}</td>
+                <td>{{ currency.label }}</td>
+                <td>{{ currency.min_value|number_format(4, '.', ',') }}</td>
+                <td>{{ currency.max_value|number_format(4, '.', ',') }}</td>
+                <td>{{ currency.avg_value|number_format(4, '.', ',') }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

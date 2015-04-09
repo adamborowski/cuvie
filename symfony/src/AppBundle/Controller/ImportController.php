@@ -86,10 +86,12 @@ class ImportController extends Controller
         $crawler = new Crawler();
         $crawler->addXmlContent($response);
         $date = new \DateTime($crawler->filter('data_publikacji')->text());
+        $records = [];
         foreach ($crawler->filter('pozycja') as $dom) {
             $currency = $this->ensureCurrency($dom);
-            $this->addRecord($dom, $date, $currency);
+            $records[] = $this->addRecord($dom, $date, $currency);
         };
+        return $records;
     }
 
     private function ensureCurrency(\DOMElement $dom)

@@ -4,7 +4,11 @@
     <meta charset="UTF-8"/>
     <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}
-        {% stylesheets filter="compass"
+        {% stylesheets
+        "@AppBundle/Resources/public/bootstrap.min.css" %}
+        <link rel="stylesheet" href="{{ asset_url }}"/>
+        {% endstylesheets %}
+        {% stylesheets filter="compass" output="styles.css"
         "@AppBundle/Resources/assets/css/main.scss" %}
         <link rel="stylesheet" href="{{ asset_url }}"/>
         {% endstylesheets %}
@@ -12,7 +16,18 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
 </head>
 <body>
-{% block body %}{% endblock %}
-{% block javascripts %}{% endblock %}
+{% include "AppBundle::header.html.twig" %}
+<div class="a-page-content">
+    {% block body %}{% endblock %}
+</div>
+
+
+{% block javascripts %}
+    {% javascripts
+    'https://code.jquery.com/jquery-1.10.2.min.js'
+    '@AppBundle/Resources/public/bootstrap.min.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
 </body>
 </html>
