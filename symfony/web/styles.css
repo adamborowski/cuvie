@@ -1,23 +1,45 @@
-/* line 3, assetic_compass4lNtlN.scss */
+/* line 3, assetic_compass3h860Y.scss */
 .a-page-content {
   margin-top: 64px;
 }
 
-/* line 7, assetic_compass4lNtlN.scss */
+/* line 7, assetic_compass3h860Y.scss */
 .navbar-brand {
   padding: 0 10px;
+  font-family: "Droid Sans", sans-serif;
+  text-transform: lowercase;
 }
-/* line 9, assetic_compass4lNtlN.scss */
+/* line 9, assetic_compass3h860Y.scss */
 .navbar-brand img {
   display: inline-block;
   vertical-align: middle;
 }
-/* line 13, assetic_compass4lNtlN.scss */
-.navbar-brand strong {
-  color: #155d9a;
+/* line 14, assetic_compass3h860Y.scss */
+.navbar-brand span:first-child {
+  color: #145790;
+}
+/* line 18, assetic_compass3h860Y.scss */
+.navbar-brand span:last-child {
+  font-weight: bold;
 }
 
-/* line 20, assetic_compass4lNtlN.scss */
+/* line 29, assetic_compass3h860Y.scss */
+.a-home-alert {
+  margin-top: 20px;
+}
+
+/* line 35, assetic_compass3h860Y.scss */
 .a-table tbody tr {
   cursor: pointer;
+}
+
+/* line 40, assetic_compass3h860Y.scss */
+.a-highlight {
+  color: #00aa00;
+  font-weight: bold;
+  display: inline-block;
+  background: #fff430;
+  line-height: 1em;
+  padding: 2px 1px;
+  margin: 0px -1px;
 }

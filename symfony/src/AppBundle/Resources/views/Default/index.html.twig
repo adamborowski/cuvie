@@ -1,28 +1,54 @@
 {% extends 'AppBundle::base.html.twig' %}
 
 {% block body %}
-    Currencies
-    result: {{ currencies|length }}
-    <table class="a-table table table-striped table-hover">
-        <thead>
-        <tr>
-            <th>Symbol</th>
-            <th>Name</th>
-            <th>Min</th>
-            <th>Max</th>
-            <th>Avg</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for currency in currencies %}
-            <tr onclick="location.href='{{ path('preview',{currencyCode:currency.id}) }}'">
-                <td>{{ currency.id }}</td>
-                <td>{{ currency.label }}</td>
-                <td>{{ currency.min_value|number_format(4, '.', ',') }}</td>
-                <td>{{ currency.max_value|number_format(4, '.', ',') }}</td>
-                <td>{{ currency.avg_value|number_format(4, '.', ',') }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="container">
+        {% if currencies|length %}
+            <div class="alert alert-dismissible alert-success pull-right a-home-alert">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <h4>{{ 'home.tip.header'|trans|raw }}</h4>
+                {{ 'home.tip'|trans|raw }}
+            </div>
+        {% endif %}
+        {% set route = app.request.get('_route') %}
+        <h1>{{ {homepage:'home.title', search:'search.title'}[route]|trans }}</h1>
+
+        <p class="lead">
+
+            {% if route == 'homepage' %}
+                {{ 'home.header'|trans({'{count}': currencies|length, '{from}':start|date('Y-m-d'),'{to}':end|date('Y-m-d')}) }}
+            {% else %}
+                {{ 'search.header'|transchoice(currencies|length,{'{count}': currencies|length, '{subject}':subject}) }}
+            {% endif %}
+        </p>
+
+
+        {% if currencies|length %}
+            <table class="a-table table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>{{ 'tab.symbol'|trans }}</th>
+                    <th>{{ 'tab.name'|trans }}</th>
+                    <th>{{ 'tab.min'|trans }}</th>
+                    <th>{{ 'tab.max'|trans }}</th>
+                    <th>{{ 'tab.avg'|trans }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if subject is not defined %}
+                    {% set subject = "" %}
+                {% endif %}
+                {% for currency in currencies %}
+                    <tr onclick="location.href='{{ path('preview',{currencyCode:currency.id}) }}'">
+                        <td>{{ currency.id|highlight(subject)|raw }}</td>
+                        <td>{{ currency.label|highlight(subject)|raw }}</td>
+                        <td>{{ currency.min_value|number_format(4, '.', ',') }}</td>
+                        <td>{{ currency.max_value|number_format(4, '.', ',') }}</td>
+                        <td>{{ currency.avg_value|number_format(4, '.', ',') }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+
 {% endblock %}

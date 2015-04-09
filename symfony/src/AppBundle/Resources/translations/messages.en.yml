@@ -1,0 +1,18 @@
+tabTitle: Currency Viewer
+appName: <span>Cu</span><span>Vie</span>
+currencyList: List
+signIn: Sign in
+search: Search currency
+submit: submit
+import: Import
+tab.symbol: Symbol
+tab.name: Name
+tab.min: Minumum
+tab.max: Maximum
+tab.avg: Average
+home.title: Currency list
+home.header: Showing {count} items imported from {from} to {to}
+home.tip.header: Quick tip
+home.tip: Click on any row to view details
+search.title: Search
+search.header: '{0} There are no currencies as a result of "{subject}" |{1} Showing one item as a result of "{subject}" |]1,Inf]Showing {count} items as a result of "{subject}"'

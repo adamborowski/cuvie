@@ -3,6 +3,19 @@
 {% block body %}
     <div class="container">
         <h1>{{ currency.id }}</h1>
+        <div class="pull-right">
+            <table class="table" style="">
+                <tr>
+                    <th>{{ 'tab.min'|trans }}</th>
+                    <td>{{ attrs.min_value|number_format(4, '.', ',') }}</td>
+                    <th>{{ 'tab.max'|trans }}</th>
+                    <td>{{ attrs.max_value|number_format(4, '.', ',') }}</td>
+                    <th>{{ 'tab.avg'|trans }}</th>
+                    <td>{{ attrs.avg_value|number_format(4, '.', ',') }}</td>
+                </tr>
+
+            </table>
+        </div>
 
         <p class="lead">{{ currency.label }}</p>
     </div>

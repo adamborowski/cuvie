@@ -10,9 +10,24 @@
     display: inline-block;
     vertical-align: middle;
   }
-  strong {
-    color: #155d9a;
+  font-family: "Droid Sans", sans-serif;
+  span:first-child {
+    $color: #145790;
+    color: $color;
   }
+  span:last-child {
+    font-weight: bold;
+  }
+
+  //  font-size:1.6em;
+  text-transform: lowercase;
+  span {
+
+  }
+}
+
+.a-home-alert {
+  margin-top: 20px;
 }
 
 .a-table {
@@ -21,4 +36,14 @@
       cursor: pointer;
     }
   }
+}
+.a-highlight{
+//  color: #884390;
+  color: #00aa00;
+  font-weight: bold;
+  display:inline-block;
+  background: #fff430;
+  line-height:1em;
+  padding:2px 1px;
+  margin: 0px -1px;
 }
