@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Currency;
 use AppBundle\Entity\Entry;
+use Doctrine\ORM\EntityManager;
 use Lsw\ApiCallerBundle\Call\HttpGetHtml;
 use Lsw\ApiCallerBundle\Call\HttpGetJson;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -12,6 +13,9 @@ use Symfony\Component\DomCrawler\Crawler;
 
 class ImportController extends Controller
 {
+    /**
+     * @var $em EntityManager
+     */
     private $start, $end, $em, $currencies = [];
 
     /**
