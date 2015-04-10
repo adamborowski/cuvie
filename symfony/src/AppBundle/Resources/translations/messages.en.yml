@@ -6,7 +6,7 @@ search: Search currency
 submit: submit
 import: Import
 tab.symbol: Symbol
-tab.name: Name
+tab.name: Name (in Polish)
 tab.min: Minumum
 tab.max: Maximum
 tab.avg: Average
@@ -14,7 +14,7 @@ tab.date: Date
 tab.value: Value
 tab.ratio: Conversion
 home.title: Currency list
-home.header: Showing {count} items imported from {from} to {to}
+home.header: Showing {count} items imported <span class="nobr">from {from} to {to}</span>
 home.tip.header: Quick tip
 home.tip: Click on any row to view details
 search.title: Search
@@ -23,3 +23,6 @@ time: time
 preview.tip: <strong>Drag</strong> to zoom. <strong>Double click</strong> to zoom out. Press <kbd>SHIFT</kbd> and <strong>drag</strong> to pan. Use <strong>magnifier</strong> to pan and zoom.
 preview.tip.header: Chart navigation instructions
 details.of: Details of:
+language: Language
+language.pl: Polish
+language.en: English

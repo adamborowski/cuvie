@@ -1,0 +1,26 @@
+currencyList: Lista
+signIn: Zaloguj się
+search: Znajdź walutę
+submit: wyślij
+import: Import
+tab.symbol: Symbol
+tab.name: Nazwa
+tab.min: Minumum
+tab.max: Maksimum
+tab.avg: Średnia
+tab.date: Data
+tab.value: Wartość
+tab.ratio: Przelicznik
+home.title: Lista walut
+home.header: Waluty ({count}) zaimportowane <span class="nobr">od {from} do {to}</span<
+home.tip.header: Wskazówka
+home.tip: Kliknij na wybranym wierszu aby wyświetlić szczegóły waluty
+search.title: Wyniki wyszukiwania
+search.header: '{0} Brak wyników dla hasła "{subject}" |{1} Znaleziono jeden wynik dla hasła "{subject}" |]1,Inf]Wyniki wyszukiwania ({count}) dla hasła "{subject}"'
+time: czas
+preview.tip: <strong>Przeciągnij</strong> aby powiększyć. <strong>Kliknij podwójnie</strong> aby oddalić. Naciśnij <kbd>SHIFT</kbd> oraz <strong>przeciągnij</strong> aby przesuwać. Użyj <strong>uchwytów pod wykresem</strong> aby przesuwac i powiększać.
+preview.tip.header: Instrukcje nawigacji
+details.of: Szczegóły dla:
+language: Język
+language.pl: Polski
+language.en: Angielski

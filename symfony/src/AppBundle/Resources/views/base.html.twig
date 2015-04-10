@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8"/>
-    <title>{% block title %}{{ 'tabTitle'|trans}}{% endblock %}</title>
+    <title>{% block title %}{{ 'tabTitle'|trans }}{% endblock %}</title>
     {% block stylesheets %}
         {% stylesheets
         "@AppBundle/Resources/public/bootstrap.min.css" %}
@@ -28,6 +28,11 @@
     '@AppBundle/Resources/public/bootstrap.min.js' %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
+    <script type="text/javascript">
+        $(function () {
+            $('.container').addClass('a-visible');
+        });
+    </script>
 {% endblock %}
 </body>
 </html>

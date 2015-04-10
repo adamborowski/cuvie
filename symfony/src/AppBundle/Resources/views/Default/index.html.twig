@@ -15,9 +15,9 @@
         <p class="lead">
 
             {% if route == 'homepage' %}
-                {{ 'home.header'|trans({'{count}': currencies|length, '{from}':start|date('Y-m-d'),'{to}':end|date('Y-m-d')}) }}
+                {{ 'home.header'|trans({'{count}': currencies|length, '{from}':start|date('Y-m-d'),'{to}':end|date('Y-m-d')})|raw }}
             {% else %}
-                {{ 'search.header'|transchoice(currencies|length,{'{count}': currencies|length, '{subject}':subject}) }}
+                {{ 'search.header'|transchoice(currencies|length,{'{count}': currencies|length, '{subject}':subject})|raw }}
             {% endif %}
         </p>
 

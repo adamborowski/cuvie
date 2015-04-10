@@ -1,4 +1,6 @@
-//@import  "compass/reset";
+@import "compass/css3/transition";
+@import "compass/css3/opacity";
+@import "compass/css3/transform";
 
 .a-page-content {
   margin-top: 64px;
@@ -10,7 +12,9 @@
   img {
     display: inline-block;
     vertical-align: middle;
-    margin:8px 0px;
+    margin: 8px 0px;
+    width:48px;
+    height:48px;
   }
   font-family: "Droid Sans", sans-serif;
   span:first-child {
@@ -54,14 +58,29 @@
 $previewHeight: 300px;
 
 #currency-chart {
-//  width: 700px;
+  //  width: 700px;
   height: $previewHeight;
-//  display: inline-block;
+  //  display: inline-block;
 }
 
 .a-chart-table-container {
-//  display: inline-block;
+  //  display: inline-block;
   height: $previewHeight;
-//  width: 235px;
+  //  width: 235px;
   overflow: auto;
+}
+
+.container {
+  @include transition-duration(0.5s);
+  @include transition-property(opacity, transform);
+  @include opacity(0);
+  @include transform(translate(0, -10px));
+  &.a-visible {
+    @include opacity(1);
+    @include transform(none);
+  }
+}
+
+.nobr {
+  white-space: nowrap;
 }

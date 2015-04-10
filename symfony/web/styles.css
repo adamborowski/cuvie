@@ -1,41 +1,43 @@
-/* line 3, assetic_compassvKNwnt.scss */
+/* line 5, assetic_compass9bBsbS.scss */
 .a-page-content {
   margin-top: 64px;
 }
 
-/* line 7, assetic_compassvKNwnt.scss */
+/* line 9, assetic_compass9bBsbS.scss */
 .navbar-brand {
   padding: 0 10px;
   vertical-align: middle;
   font-family: "Droid Sans", sans-serif;
   text-transform: lowercase;
 }
-/* line 10, assetic_compassvKNwnt.scss */
+/* line 12, assetic_compass9bBsbS.scss */
 .navbar-brand img {
   display: inline-block;
   vertical-align: middle;
   margin: 8px 0px;
+  width: 48px;
+  height: 48px;
 }
-/* line 16, assetic_compassvKNwnt.scss */
+/* line 20, assetic_compass9bBsbS.scss */
 .navbar-brand span:first-child {
   color: #145790;
 }
-/* line 20, assetic_compassvKNwnt.scss */
+/* line 24, assetic_compass9bBsbS.scss */
 .navbar-brand span:last-child {
   font-weight: bold;
 }
 
-/* line 31, assetic_compassvKNwnt.scss */
+/* line 35, assetic_compass9bBsbS.scss */
 .a-home-alert {
   margin-top: 20px;
 }
 
-/* line 37, assetic_compassvKNwnt.scss */
+/* line 41, assetic_compass9bBsbS.scss */
 .a-table tbody tr {
   cursor: pointer;
 }
 
-/* line 43, assetic_compassvKNwnt.scss */
+/* line 47, assetic_compass9bBsbS.scss */
 .a-highlight {
   color: #00aa00;
   font-weight: bold;
@@ -46,13 +48,45 @@
   margin: 0px -1px;
 }
 
-/* line 56, assetic_compassvKNwnt.scss */
+/* line 60, assetic_compass9bBsbS.scss */
 #currency-chart {
   height: 300px;
 }
 
-/* line 62, assetic_compassvKNwnt.scss */
+/* line 66, assetic_compass9bBsbS.scss */
 .a-chart-table-container {
   height: 300px;
   overflow: auto;
+}
+
+/* line 73, assetic_compass9bBsbS.scss */
+.container {
+  -moz-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -moz-transition-property: opacity, -moz-transform;
+  -o-transition-property: opacity, -o-transform;
+  -webkit-transition-property: opacity, -webkit-transform;
+  transition-property: opacity, transform;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  -moz-transform: translate(0, -10px);
+  -ms-transform: translate(0, -10px);
+  -webkit-transform: translate(0, -10px);
+  transform: translate(0, -10px);
+}
+/* line 78, assetic_compass9bBsbS.scss */
+.container.a-visible {
+  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+  opacity: 1;
+  -moz-transform: none;
+  -ms-transform: none;
+  -webkit-transform: none;
+  transform: none;
+}
+
+/* line 84, assetic_compass9bBsbS.scss */
+.nobr {
+  white-space: nowrap;
 }
