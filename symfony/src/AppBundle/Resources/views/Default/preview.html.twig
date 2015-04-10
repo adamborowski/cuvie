@@ -41,17 +41,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% for entry in currency.entries|reverse %}
-                        <tr>
-                            <td>
-                                {{ entry.date|date('Y-m-d') }}
-                            </td>
-                            <td>
-                                {{ entry.value }}
-                            </td>
-
-                        </tr>
-                    {% endfor %}
+                    {# d3js place here#}
                     </tbody>
                 </table>
             </div>
@@ -61,95 +51,24 @@
 {% block javascripts %}
     {{ parent() }}
     {% javascripts
+    'http://d3js.org/d3.v3.min.js'
     '@AppBundle/Resources/public/dygraph/dygraph-combined.js'
     '@AppBundle/Resources/assets/js/dygraph-addons.js'
     '@AppBundle/Resources/assets/js/jquery.ensurevisible.js'
+    '@AppBundle/Resources/assets/js/pages/preview.js'
     '@AppBundle/Resources/public/date.format.lite.js' %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
     <script type="text/javascript">
-        var data ={{ json|raw }};
-        var chartData = data.map(function (x) {
-            return [new Date(x.date), x.value]
-        });
-
-
         $(function () {
+            var options = {
+                labels: ['{{'time'|trans }}', '{{ currency.id }}'],
+                data:{{ json|raw }}
+            };
             //dygraph localize
             Date.names = "{{ 'date.format.names'|trans }}".match(/.[a-zżółćęąśźń]+/g)
             Dygraph.SHORT_MONTH_NAMES_ = Date.names.slice(0, 12);
-            var chartElement = $('#currency-chart');
-            var tableElement = $('.a-chart-table');
-            var tableContainerElement = $('.a-chart-table-container');
-            $('.splitter-enabled').split({
-                orientation: 'horizontal',
-                limit: 140,
-                position: '50%',
-                onDrag: function () {
-                    g.resize();
-                }
-            });
-
-            var lastHighlighted;
-            var g = this.g = new Dygraph(chartElement.get(0), chartData, {
-                labels: ['{{'time'|trans }}', '{{ currency.id }}'],
-                axes: {
-                    y: {
-                        axisLabelWidth: 20
-                    }
-                },
-                valueFormatter: function (a, b, c, d, e, f) {
-                    if (f == 0)
-                        return new Date(a).format('YYYY-MM-DD');
-                    return a;
-                },
-                interactionModel: Dygraph.Interaction.defaultModel,
-                labelsDivWidth: 180,
-                highlightCircleSize: 4,
-                rightGap: 0,
-                leftGap: 0,
-                showRangeSelector: true,
-                rangeSelectorHeight: 30,
-                fillGraph: true,
-                fillAlpha: 0.8,
-                color: '#079ddc',
-                highlightCallback: function (a, b, c, index) {
-                    if (lastHighlighted)lastHighlighted.removeClass('a-highlighted-row');
-                    lastHighlighted = tableElement.find('tr').eq(data.length - index);
-                    lastHighlighted.addClass('a-highlighted-row');
-                    tableContainerElement.ensureVisible(lastHighlighted);
-                },
-                unhighlightCallback: function () {
-                    if (lastHighlighted)lastHighlighted.removeClass('a-highlighted-row');
-                    lastHighlighted = null;
-                },
-                drawHighlightPointCallback: function (g, series, ctx, cx, cy, color, radius) {
-                    ctx.lineWidth = 1;
-                    ctx.fillStyle = "#2184d1";
-                    ctx.strokeStyle = "#ffffff";
-                    ctx.beginPath();
-                    ctx.arc(cx, cy, radius, 0, 2 * Math.PI, false);
-                    ctx.fill();
-                    ctx.stroke();
-                }
-
-            });
-
-            tableElement.on("mouseenter", "tr", function (e) {
-                var index = data.length - $(this).index() - 1;
-                var indexTime = chartData[index][0].getTime();
-                g.panToTime(indexTime);
-                g.setSelection(index);
-            });
-
-            tableElement.find('tbody').on("mouseleave", function () {
-                g.clearSelection();
-            });
-
-            //init splitter
-
-
+            var controller = new PreviewController(options);
         });
-
     </script>
 {% endblock %}
