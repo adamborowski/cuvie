@@ -1,16 +1,16 @@
-/* line 4, assetic_compasshBEHbv.scss */
+/* line 4, assetic_compassjQwE16.scss */
 .a-page-content {
   margin-top: 64px;
 }
 
-/* line 8, assetic_compasshBEHbv.scss */
+/* line 8, assetic_compassjQwE16.scss */
 .navbar-brand {
   padding: 0 10px;
   vertical-align: middle;
   font-family: "Droid Sans", sans-serif;
   text-transform: lowercase;
 }
-/* line 11, assetic_compasshBEHbv.scss */
+/* line 11, assetic_compassjQwE16.scss */
 .navbar-brand img {
   display: inline-block;
   vertical-align: middle;
@@ -18,26 +18,26 @@
   width: 48px;
   height: 48px;
 }
-/* line 19, assetic_compasshBEHbv.scss */
+/* line 19, assetic_compassjQwE16.scss */
 .navbar-brand span:first-child {
   color: #145790;
 }
-/* line 23, assetic_compasshBEHbv.scss */
+/* line 23, assetic_compassjQwE16.scss */
 .navbar-brand span:last-child {
   font-weight: bold;
 }
 
-/* line 34, assetic_compasshBEHbv.scss */
+/* line 34, assetic_compassjQwE16.scss */
 .a-home-alert {
   margin-top: 20px;
 }
 
-/* line 40, assetic_compasshBEHbv.scss */
+/* line 40, assetic_compassjQwE16.scss */
 .a-table tbody tr {
   cursor: pointer;
 }
 
-/* line 46, assetic_compasshBEHbv.scss */
+/* line 46, assetic_compassjQwE16.scss */
 .a-highlight {
   color: #00aa00;
   font-weight: bold;
@@ -48,28 +48,28 @@
   margin: 0px -1px;
 }
 
-/* line 59, assetic_compasshBEHbv.scss */
+/* line 59, assetic_compassjQwE16.scss */
 #currency-chart {
   overflow: visible;
 }
 
-/* line 66, assetic_compasshBEHbv.scss */
+/* line 66, assetic_compassjQwE16.scss */
 .a-chart-table-container table .a-highlighted-row td {
   background: #d9e7f2;
 }
 
-/* line 74, assetic_compasshBEHbv.scss */
+/* line 74, assetic_compassjQwE16.scss */
 .a-absolute {
   position: absolute;
 }
 
-/* line 78, assetic_compasshBEHbv.scss */
+/* line 78, assetic_compassjQwE16.scss */
 .a-flex {
   -webkit-flex: 1;
   flex: 1;
 }
 
-/* line 82, assetic_compasshBEHbv.scss */
+/* line 82, assetic_compassjQwE16.scss */
 .a-flex-container {
   left: 0;
   top: 0;
@@ -83,7 +83,7 @@
   flex-direction: column;
 }
 
-/* line 96, assetic_compasshBEHbv.scss */
+/* line 96, assetic_compassjQwE16.scss */
 .container {
   -moz-transition-duration: 0.5s;
   -o-transition-duration: 0.5s;
@@ -100,7 +100,7 @@
   -webkit-transform: translate(0, -10px);
   transform: translate(0, -10px);
 }
-/* line 101, assetic_compasshBEHbv.scss */
+/* line 101, assetic_compassjQwE16.scss */
 .container.a-visible {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
@@ -110,18 +110,18 @@
   transform: none;
 }
 
-/* line 107, assetic_compasshBEHbv.scss */
+/* line 107, assetic_compassjQwE16.scss */
 .nobr {
   white-space: nowrap;
 }
 
-/* line 111, assetic_compasshBEHbv.scss */
+/* line 111, assetic_compassjQwE16.scss */
 .hsplitter {
   height: 15px !important;
   background: none !important;
   position: relative;
 }
-/* line 115, assetic_compasshBEHbv.scss */
+/* line 115, assetic_compassjQwE16.scss */
 .hsplitter:after {
   content: ' ';
   position: absolute;
