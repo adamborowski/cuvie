@@ -62,7 +62,9 @@
     {{ parent() }}
     {% javascripts
     '@AppBundle/Resources/public/dygraph/dygraph-combined.js'
-    '@AppBundle/Resources/public/jquery.dateformat.min.js' %}
+    '@AppBundle/Resources/assets/js/dygraph-addons.js'
+    '@AppBundle/Resources/assets/js/jquery.ensurevisible.js'
+    '@AppBundle/Resources/public/date.format.lite.js' %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
     <script type="text/javascript">
@@ -73,6 +75,9 @@
 
 
         $(function () {
+            //dygraph localize
+            Date.names = "{{ 'date.format.names'|trans }}".match(/.[a-zżółćęąśźń]+/g)
+            Dygraph.SHORT_MONTH_NAMES_ = Date.names.slice(0, 12);
             var chartElement = $('#currency-chart');
             var tableElement = $('.a-chart-table');
             var tableContainerElement = $('.a-chart-table-container');
@@ -95,7 +100,7 @@
                 },
                 valueFormatter: function (a, b, c, d, e, f) {
                     if (f == 0)
-                        return DateFormat.format.date(a, 'yyyy-MM-dd');
+                        return new Date(a).format('YYYY-MM-DD');
                     return a;
                 },
                 interactionModel: Dygraph.Interaction.defaultModel,
@@ -112,33 +117,31 @@
                     if (lastHighlighted)lastHighlighted.removeClass('a-highlighted-row');
                     lastHighlighted = tableElement.find('tr').eq(data.length - index);
                     lastHighlighted.addClass('a-highlighted-row');
-                    var rowpos = lastHighlighted.position();
-                    var tableHeight = tableContainerElement.height();
-                    var currentScrollTop = tableContainerElement.scrollTop();
-                    var localTop = rowpos.top + currentScrollTop;
-                    var rowHeight = lastHighlighted.height();
-                    if (localTop >= currentScrollTop + tableHeight - rowHeight) {
-                        tableContainerElement.scrollTop(localTop - tableHeight + rowHeight);
-                    }
-                    else if (localTop < currentScrollTop) {
-                        tableContainerElement.scrollTop(localTop);
-                    }
-
+                    tableContainerElement.ensureVisible(lastHighlighted);
                 },
                 unhighlightCallback: function () {
-                    lastHighlighted.removeClass('a-highlighted-row');
+                    if (lastHighlighted)lastHighlighted.removeClass('a-highlighted-row');
                     lastHighlighted = null;
+                },
+                drawHighlightPointCallback: function (g, series, ctx, cx, cy, color, radius) {
+                    ctx.lineWidth = 1;
+                    ctx.fillStyle = "#2184d1";
+                    ctx.strokeStyle = "#ffffff";
+                    ctx.beginPath();
+                    ctx.arc(cx, cy, radius, 0, 2 * Math.PI, false);
+                    ctx.fill();
+                    ctx.stroke();
                 }
 
             });
 
             tableElement.on("mouseenter", "tr", function (e) {
-                var el = $(e.currentTargt);
                 var index = data.length - $(this).index() - 1;
-                console.log("index:", index);
+                var indexTime = chartData[index][0].getTime();
+                g.panToTime(indexTime);
                 g.setSelection(index);
-                //TODO zrobić w razie czego pokazanie większego range jesli nie widac by było
             });
+
             tableElement.find('tbody').on("mouseleave", function () {
                 g.clearSelection();
             });
