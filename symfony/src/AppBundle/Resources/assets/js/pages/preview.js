@@ -89,7 +89,7 @@ var PreviewController = function () {
 
     //tiny and fast table rendering (instead of d3js file footprint)
     var str = "", l = data.length, obj;
-    for (var i = l - 1; i >= 0; i++) {
+    for (var i = l - 1; i >= 0; i--) {
       str += "<tr><td>" + data[i][0].format('YY-MM-DD') + "</td><td>" + data[i][1] + "</td></tr>\n";
     }
     $('.a-chart-table tbody').html(str);
