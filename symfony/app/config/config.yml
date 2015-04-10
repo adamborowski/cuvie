@@ -40,11 +40,18 @@ assetic:
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
-        compass: ~
-        #closure:
-        #    jar: "%kernel.root_dir%/Resources/java/compiler.jar"
-        #yui_css:
-        #    jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar"
+        compass:
+            apply_to:   "\.scss$"
+        uglifycss:
+            bin: /usr/bin/uglifycss
+            apply_to:   "\.css$"
+        uglifyjs2:
+            bin: /usr/bin/uglifyjs
+            apply_to:   "\.js$"
+        yui_css:
+            jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.8.jar"
+        yui_js:
+            jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.8.jar"
 
 # Doctrine Configuration
 doctrine:
