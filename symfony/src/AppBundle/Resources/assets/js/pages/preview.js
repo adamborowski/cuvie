@@ -69,7 +69,7 @@ var PreviewController = function () {
       g.clearSelection();
     });
 
-    this.fillTable(data);
+    this.fillTable(chartData);
   };
 
   constructor.prototype.initSplitter = function () {
@@ -86,28 +86,36 @@ var PreviewController = function () {
 
   constructor.prototype.fillTable = function (data) {
     console.time('a');
-    var tbody = d3.select($('.a-chart-table tbody').get(0))
 
-    // create a row for each object in the data
-    var rows = tbody.selectAll("tr")
-        .data(data)
-        .enter()
-        .append("tr");
+    //tiny and fast table rendering (instead of d3js file footprint)
+    var str="", l=data.length, obj;
+    for (var i = 0; i < l; i++) {
+      str+="<tr><td>"+data[i][0].format('YY-MM-DD')+"</td><td>"+data[i][1]+"</td></tr>\n";
+    }
+    $('.a-chart-table tbody').html(str);
 
-    // create a cell in each row for each column
-
-    var cells = rows.selectAll("td")
-        .data(function (row) {
-          return [row.date, row.value];
-        })
-        .enter()
-        .append("td")
-        .html(function (d) {
-          return d;
-        });
-
-    console.timeEnd('a');
-    return tbody;
+    //var tbody = d3.select($('.a-chart-table tbody').get(0))
+    //
+    //// create a row for each object in the data
+    //var rows = tbody.selectAll("tr")
+    //    .data(data)
+    //    .enter()
+    //    .append("tr");
+    //
+    //// create a cell in each row for each column
+    //
+    //var cells = rows.selectAll("td")
+    //    .data(function (row) {
+    //      return [row.date, row.value];
+    //    })
+    //    .enter()
+    //    .append("td")
+    //    .html(function (d) {
+    //      return d;
+    //    });
+    //
+    //console.timeEnd('a');
+    //return tbody;
   };
 
   return constructor;
