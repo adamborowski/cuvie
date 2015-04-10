@@ -5,7 +5,8 @@
     <title>{% block title %}{{ 'tabTitle'|trans }}{% endblock %}</title>
     {% block stylesheets %}
         {% stylesheets
-        "@AppBundle/Resources/public/bootstrap.min.css" %}
+        "@AppBundle/Resources/public/bootstrap.min.css"
+        '@AppBundle/Resources/public/jquery.splitter.css' %}
         <link rel="stylesheet" href="{{ asset_url }}"/>
         {% endstylesheets %}
         {% stylesheets filter="compass" output="styles.css"
@@ -25,6 +26,7 @@
 {% block javascripts %}
     {% javascripts
     'https://code.jquery.com/jquery-1.10.2.min.js'
+    '@AppBundle/Resources/public/jquery.splitter.js'
     '@AppBundle/Resources/public/bootstrap.min.js' %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}

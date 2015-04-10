@@ -20,7 +20,7 @@ home.tip: Click on any row to view details
 search.title: Search
 search.header: '{0} There are no currencies as a result of "{subject}" |{1} Showing one item as a result of "{subject}" |]1,Inf]Showing {count} items as a result of "{subject}"'
 time: time
-preview.tip: <strong>Drag</strong> to zoom. <strong>Double click</strong> to zoom out. Press <kbd>SHIFT</kbd> and <strong>drag</strong> to pan. Use <strong>magnifier</strong> to pan and zoom.
+preview.tip: <strong>Drag</strong> to zoom. <strong>Double click</strong> to zoom out. Press <kbd>SHIFT</kbd> and <strong>drag</strong> to pan. Use <strong>magnifier</strong> to pan and zoom. Use <strong>splitter</strong> to resize.
 preview.tip.header: Chart navigation instructions
 details.of: Details of:
 language: Language
