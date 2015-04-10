@@ -30,6 +30,14 @@
     <script type="text/javascript">
         $(function () {
             $('.container').addClass('a-visible');
+            //popover
+            var popover = $("[data-toggle=popover]");
+            popover.popover({html: true});
+            $(document).click(function (e) {
+                if (!$(e.target).is('[data-toggle=popover]')) {
+                    popover.popover('hide');
+                }
+            });
         });
 
     </script>

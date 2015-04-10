@@ -3,11 +3,12 @@
 {% block body %}
     <div class="container a-flex-container a-absolute">
         <div>
-            <div class="alert alert-dismissible alert-success a-home-alert pull-right">
-                <button type="button" class="close" data-dismiss="alert">×</button>
-                {#<h4>{{ 'preview.tip.header'|trans|raw }}</h4>#}
-                {{ 'preview.tip'|trans|raw }}
-            </div>
+
+
+            <button style="margin-top:20px;" type="button" class="btn btn-success pull-right" data-container="body" data-toggle="popover" data-placement="bottom"
+                    data-content="{{ 'preview.tip'|trans }}">
+                {{ 'preview.tip.header'|trans|raw }}
+            </button>
             <h1>{{ currency.id }}</h1>
 
             <div class="">
