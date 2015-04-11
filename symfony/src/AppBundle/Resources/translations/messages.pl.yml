@@ -32,3 +32,4 @@ error.message.500: Błąd serwera
 error.message.unknown: Nieznany błąd
 about.header: O aplikacji
 about.file: AppBundle:About:article/pl.html.twig
+source_code: Kod źródłowy

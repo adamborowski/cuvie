@@ -34,3 +34,4 @@ error.message.500: Internal server error
 error.message.unknown: Unknown error
 about.header: About this application
 about.file: AppBundle:About:article/en.html.twig
+source_code: View source

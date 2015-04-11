@@ -1,0 +1,27 @@
+<h4>Wykorzystane technologie</h4>
+{% include 'AppBundle:About:article/tech.html.twig' %}
+<h4>Dane</h4>
+<p class="text-justify">
+    Dane zostały automatycznie zaimportowane ze strony <a href="http://nbp.pl">NBP</a>.
+    Proces importowania został zaimplementowany jako akcja Symfony <code>/import</code>.
+    <strong>Niestety</strong>, to rozwiązanie wykonuje synchronicznie wiele zapytań <strong>CURL</strong> (dla każdego dnia) co powoduje przekroczenie limitów pamięci i
+    czasu wykonania w środowisku produkcyjnym.
+    {% set import_url = 'https://github.com/adamborowski/cuvie/blob/master/symfony/src/AppBundle/Controller/ImportController.php' %}
+    {% set sql_url = 'https://github.com/adamborowski/cuvie/blob/master/symfony/sql_dump' %}
+    Pod wskazanymi adresami można znaleźć <a href="{{ import_url }}">kod źródłowy</a> and <a href="{{ sql_url }}">pliki sql</a> zaimplementowanego procesu importu.
+</p>
+<h4>Strona wyszukiwania</h4>
+<p>
+    Aplikacja ma zaimplementowaną prostą funkcję wyszukiwania, która przeszukuje kolumny <code>id</code> oraz <code>label</code> w tabeli <code>currency</code>.
+</p>
+<h4>Wdrożenie</h4>
+<p>
+    Wszystkie pliki CSS i JS zostały automatycznie scalone i skompresowane z użyciem
+    <a href="https://github.com/mishoo/UglifyJS2">uglifyjs2</a>,
+    <a href="https://github.com/fmarcia/UglifyCSS">uglifycss</a>
+    oraz
+    <a href="https://github.com/symfony/AsseticBundle">AsseticBundle</a>.
+</p>
+<h4>Wspierane przeglądarki</h4>
+<p>Aplikacja została przetestowana na </p>
+{% include 'AppBundle:About:article/browsers.html.twig' %}
