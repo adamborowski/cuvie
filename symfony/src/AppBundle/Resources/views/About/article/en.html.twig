@@ -4,8 +4,8 @@
 <p class="text-justify">
     Data imported from <a href="http://nbp.pl">NBP</a>.
     Import process is implemented as Symfony action <code>/import</code>.
-    <strong>Unfortunately</strong> it uses many synchronous <strong>CURL</strong> calls (data for all days has been imported) so it always breaks memory and timeout
-    limits on production server.
+    <strong>Unfortunately</strong> it uses many synchronous <strong>CURL</strong> calls (data for all days has been imported) so it always breaks timeout
+    limit on production server.
     {% set import_url = 'https://github.com/adamborowski/cuvie/blob/master/symfony/src/AppBundle/Controller/ImportController.php' %}
     {% set sql_url = 'https://github.com/adamborowski/cuvie/blob/master/symfony/sql_dump' %}
     You can visit following links to see import process <a href="{{ import_url }}">source code</a> and <a href="{{ sql_url }}">sql dump</a> files.
