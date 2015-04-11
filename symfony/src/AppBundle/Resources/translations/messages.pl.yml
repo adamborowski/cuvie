@@ -15,7 +15,7 @@ tab.ratio: Przelicznik
 home.title: Lista walut
 home.header: Waluty ({count}) zaimportowane <span class="nobr">od {from} do {to}</span<
 home.tip.header: Wskazówka
-home.tip: Kliknij na wybranym wierszu aby wyświetlić szczegóły waluty
+home.tip: Kliknij wybrany wiersz aby wyświetlić szczegóły waluty
 search.title: Wyniki wyszukiwania
 search.header: '{0} Brak wyników dla hasła "{subject}" |{1} Znaleziono jeden wynik dla hasła "{subject}" |]1,Inf]Wyniki wyszukiwania ({count}) dla hasła "{subject}"'
 time: czas
