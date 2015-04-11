@@ -1,1 +1,1 @@
-web: bin/heroku-php-apache2 web/
+web: symfony/bin/heroku-php-apache2 web/
