@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Doctrine\ORM\EntityManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 use Symfony\Component\Serializer\Serializer;
@@ -35,6 +36,9 @@ class DefaultController extends Controller
          */
         $em = $this->getDoctrine()->getManager();
         $currency = $em->find("AppBundle\\Entity\\Currency", $currencyCode);
+        if($currency==null){
+            throw new NotFoundHttpException();
+        }
         $query = $em->createQuery("select max(e.value) as max_value, min(e.value) as min_value, avg(e.value) as avg_value from AppBundle\Entity\Entry e where e.currency=:currency");
         $query->setParameter("currency", $currency);
         $attrs = $query->getSingleResult();

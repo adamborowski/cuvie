@@ -1,0 +1,11 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>{{ 'about.header'|trans() }}</h1>
+
+        <div>
+            {{ include('about.file'|trans) }}
+        </div>
+    </div>
+{% endblock %}

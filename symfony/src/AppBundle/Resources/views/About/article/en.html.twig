@@ -1,0 +1,19 @@
+<h4>Technologies</h4>
+{% include 'AppBundle:About:article/tech.html.twig' %}
+<h4>Data</h4>
+<p class="text-justify">
+    Data imported from <a href="http://nbp.pl">NBP</a>.
+    Import process is implemented as Symfony action <code>/import</code>.
+    <strong>Unfortunately</strong> it uses many synchronous <strong>CURL</strong> calls so it always breaks memory and timeout limits on production server.
+    {% set import_url = 'https://github.com/adamborowski/cuvie/blob/master/symfony/src/AppBundle/Controller/ImportController.php' %}
+    {% set sql_url = 'https://github.com/adamborowski/cuvie/blob/master/symfony/sql_dump' %}
+    You can visit following links to see import process <a href="{{ import_url }}">soruce code</a> and <a href="{{ sql_url }}">sql dump</a> files.
+</p>
+<h4>Deployment</h4>
+<p>
+    All CSS and JS assets are concatenated and minified using
+    <a href="https://github.com/mishoo/UglifyJS2">uglifyjs2</a>,
+    <a href="https://github.com/fmarcia/UglifyCSS">uglifycss</a>
+    and
+    <a href="https://github.com/symfony/AsseticBundle">AsseticBundle</a>.
+</p>

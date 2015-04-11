@@ -3,6 +3,7 @@ signIn: Zaloguj się
 search: Znajdź walutę
 submit: wyślij
 import: Import
+about: O aplikacji
 tab.symbol: Symbol
 tab.name: Nazwa
 tab.min: Minumum
@@ -25,3 +26,9 @@ language: Język
 language.pl: Polski
 language.en: Angielski
 date.format.names: StyLutMarKwiMajCzeLipSieWrzPaźLisGruStyczeńLutyMarzecKwiecieńMajCzerwiecLipiecSierpieńWrzesieńPaździernikListopadGrudzieńNiePonWtoŚroCzwPiąSobNiedzielaPoniedziałekWtorekŚrodaCzwartekPiątekSobota
+error.header: Błąd %code%
+error.message.404: Nie znaleziono strony
+error.message.500: Błąd serwera
+error.message.unknown: Nieznany błąd
+about.header: O aplikacji
+about.file: AppBundle:About:article/pl.html.twig

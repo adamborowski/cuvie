@@ -1,0 +1,15 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block body %}
+    <div class="container ">
+        <h1>{{ 'error.header'|trans({'%code%':status_code}) }}</h1>
+        {% set supported_codes = [404,500] %}
+        <p class="clear">
+            {% if status_code in supported_codes %}
+                {{ ('error.message.'~status_code)|trans }}
+            {% else %}
+                {{ 'error.message.unknown'|trans }}
+            {% endif %}
+        </p>
+    </div>
+{% endblock %}

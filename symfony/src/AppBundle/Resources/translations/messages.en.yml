@@ -5,6 +5,7 @@ signIn: Sign in
 search: Search currency
 submit: submit
 import: Import
+about: About
 tab.symbol: Symbol
 tab.name: Name (in Polish)
 tab.min: Minumum
@@ -27,3 +28,9 @@ language: Language
 language.pl: Polish
 language.en: English
 date.format.names: JanFebMarAprMayJunJulAugSepOctNovDecJanuaryFebruaryMarchAprilMayJuneJulyAugustSeptemberOctoberNovemberDecemberSunMonTueWedThuFriSatSundayMondayTuesdayWednesdayThursdayFridaySaturday
+error.header: Error  %code%
+error.message.404: Page not found
+error.message.500: Internal server error
+error.message.unknown: Unknown error
+about.header: About this application
+about.file: AppBundle:About:article/en.html.twig
