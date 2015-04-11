@@ -15,20 +15,8 @@ $headerHeight: 64px;
     width: 48px;
     height: 48px;
   }
-  font-family: "Droid Sans", sans-serif;
-  span:first-child {
-    $color: #145790;
-    color: $color;
-  }
-  span:last-child {
-    font-weight: bold;
-  }
-
-  //  font-size:1.6em;
-  text-transform: lowercase;
-  span {
-
-  }
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 .a-home-alert {
