@@ -13,7 +13,7 @@ use Symfony\Component\Serializer\Serializer;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/currencies", name="homepage")
      */
     public function indexAction()
     {

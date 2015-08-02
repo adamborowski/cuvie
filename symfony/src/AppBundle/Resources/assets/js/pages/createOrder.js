@@ -70,14 +70,14 @@ myApp.controller('OrderController', ['$scope', 'common', '$http', '$timeout', fu
             then(function (response) {
                 // this callback will be called asynchronously
                 // when the response is available
-                $timeout(function () {
-                    if (myApp.order) {
-                        $scope.status = "creation";
-                    }
-                    else {
-                        $scope.status = "finish";
-                    }
-                }, 1000);
+                //$timeout(function () {
+                if (myApp.order) {
+                    $scope.status = "creation";
+                }
+                else {
+                    $scope.status = "finish";
+                }
+                //}, 1000);
             }, function (response) {
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
