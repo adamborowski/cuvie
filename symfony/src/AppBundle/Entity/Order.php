@@ -171,4 +171,8 @@ class Order
     {
         return $this->details[$name];
     }
+
+    public function  isDetailSet($name){
+        return isset($this->details[$name]);
+    }
 }

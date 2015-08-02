@@ -2,10 +2,11 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\ResourceRepository")
  * @ORM\Table(name="resource")
  */
 class Resource
@@ -20,6 +21,23 @@ class Resource
      * @ORM\Column(type="string", length=100)
      */
     protected $label;
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $desc;
+    /**
+     * @ORM\Column(type="float")
+     */
+    protected $unitPrice;
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $available;
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $order;
+    private $remaining;
 
     /**
      * @return mixed
@@ -38,21 +56,20 @@ class Resource
     }
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @return mixed
      */
-    protected $desc;
+    public function getRemaining()
+    {
+        return $this->remaining;
+    }
+
     /**
-     * @ORM\Column(type="float")
+     * @param mixed $remaining
      */
-    protected $unitPrice;
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    protected $available;
-    /**
-     * @ORM\Column(type="integer")
-     */
-    protected $order;
+    public function setRemaining($remaining)
+    {
+        $this->remaining = $remaining;
+    }
 
     /**
      * @return mixed
@@ -132,13 +149,5 @@ class Resource
     public function setAvailable($available)
     {
         $this->available = $available;
-    }
-
-    public function getRemaining()
-    {
-        if($this->getAvailable()==null){
-            return null;
-        }
-        return rand(0, 5);
     }
 }

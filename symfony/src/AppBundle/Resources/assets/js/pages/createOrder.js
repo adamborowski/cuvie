@@ -24,21 +24,10 @@ myApp.factory('common', function () {
 })
 ;
 
-myApp.controller('OrderController', ['$scope', 'common', function ($scope, common) {
-    $scope.depth = 3;
+myApp.controller('OrderController', ['$scope', 'common', '$http', '$timeout', function ($scope, common, $http, $timeout) {
+    $scope.status = "creation";
     $scope.map = common.map;
     $scope.transport = 'own';
-    $scope.price = function () {
-        var width = $scope.width;
-        var height = $scope.height;
-        var depth = $scope.depth;
-        var priceCm = $scope.priceCm;
-
-        if (width > 0 && height > 0 && depth > 0 && priceCm > 0) {
-            return width * height * depth * priceCm;
-        }
-    };
-
     $scope.childrenScope = {};
 
     $scope.totalPrice = function () {
@@ -55,6 +44,36 @@ myApp.controller('OrderController', ['$scope', 'common', function ($scope, commo
         }
         return total;
     };
+    $scope.submit = function () {
+        var data = {
+            firstName: $scope.firstName,
+            lastNameName: $scope.lastName,
+            email: $scope.email,
+            details: {},
+            transport: $scope.transport
+        };
+        for (var name in $scope.childrenScope) {
+            if ($scope.childrenScope[name].value != null) {
+                data.details[name] = $scope.childrenScope[name].value
+            }
+
+        }
+        $scope.status = "pending";
+        $http.post(myApp.formSubmitUrl, data).
+            then(function (response) {
+                // this callback will be called asynchronously
+                // when the response is available
+                $timeout(function () {
+                    $scope.status = "finish";
+                }, 1000);
+            }, function (response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                //alert('error')
+                $scope.status = "creation";
+            });
+    };
+
 
     $scope.common = common;
 }]);

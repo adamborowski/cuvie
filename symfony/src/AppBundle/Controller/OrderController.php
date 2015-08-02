@@ -2,10 +2,11 @@
 
 namespace AppBundle\Controller;
 
-use Doctrine\ORM\EntityManager;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 use Symfony\Component\Serializer\Serializer;
@@ -32,10 +33,22 @@ class OrderController extends Controller
         $resMap = [];
         foreach ($resources as $resource) {
             $resMap[$resource->getId()] = $resource;
+            $resource->setRemaining($repo->getRemaining($resource->getId()));
         }
         $serializer = new Serializer(array(new GetSetMethodNormalizer()), array('json' => new JsonEncoder()));
         $json = $serializer->serialize($resMap, 'json');
         return $this->render('AppBundle:Order:createOrder.html.twig', ['map' => $resMap, 'json' => $json]);
     }
 
+    /**
+     * @Route("/submitOrder", name="submitOrder")
+     * @Method("POST")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function submitOrderAction(Request $request)
+    {
+        
+        return new Response('OK', Response::HTTP_OK);
+    }
 }

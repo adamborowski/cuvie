@@ -5,7 +5,7 @@
     <label for="firstName" class="col-sm-2 control-label">{{ 'resource.firstName'|trans }}</label>
 
     <div class="col-sm-10">
-        <input type="text" class="form-control" id="firstName" placeholder="Imię zamawiającego">
+        <input type="text" class="form-control" ng-model="firstName" placeholder="Imię zamawiającego">
     </div>
 </div>
 {# NAZWISKO #}
@@ -13,7 +13,7 @@
     <label for="lastName" class="col-sm-2 control-label">{{ 'resource.lastName'|trans }}</label>
 
     <div class="col-sm-10">
-        <input type="text" class="form-control" id="lastName" placeholder="Nazwisko zamawiającego">
+        <input type="text" class="form-control" ng-model="lastName" placeholder="Nazwisko zamawiającego">
     </div>
 </div>
 {# EMAIL #}
@@ -21,7 +21,7 @@
     <label for="email" class="col-sm-2 control-label">Email</label>
 
     <div class="col-sm-10">
-        <input type="email" class="form-control" id="email"
+        <input type="email" class="form-control" ng-model="email"
                placeholder="Adres email, na który wyślemy potwierdzenie">
     </div>
 </div>
