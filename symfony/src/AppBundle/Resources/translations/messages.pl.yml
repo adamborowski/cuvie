@@ -1,6 +1,7 @@
 currencyList: Lista
 createOrder: 'Nowe zgłoszenie'
 signIn: Zaloguj się
+signOut: Wyloguj się
 search: Znajdź walutę
 submit: wyślij
 import: Import

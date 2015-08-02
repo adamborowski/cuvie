@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Constraints\DateTime;
 class OrderController extends Controller
 {
     /**
-     * @Route("/", name="orders")
+     * @Route("/orders", name="orders")
      */
     public function indexAction()
     {
@@ -54,7 +54,7 @@ class OrderController extends Controller
     }
 
     /**
-     * @Route("/createOrder", name="createOrder")
+     * @Route("/", name="createOrder")
      */
     public function createOrderAction()
     {
