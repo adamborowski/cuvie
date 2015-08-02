@@ -1,0 +1,54 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        {% if resources|length %}
+            <div class="alert alert-dismissible alert-success pull-right a-home-alert">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <h4>{{ 'resources.tip.header'|trans|raw }}</h4>
+                {{ 'resources.tip'|trans|raw }}
+            </div>
+        {% endif %}
+        {% set route = app.request.get('_route') %}
+        <h1>{{ "resources.title"|trans }}</h1>
+
+        <p class="lead">
+
+            {{ 'resources.header'|trans({'{count}': resources|length})|raw }}
+        </p>
+
+
+        {% if resources|length %}
+            <table class="a-table table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>{{ 'tab.id'|trans }}</th>
+                    <th>{{ 'tab.name'|trans }}</th>
+                    <th>{{ 'tab.unitPrice'|trans }}</th>
+                    <th>{{ 'tab.available'|trans }}</th>
+                    <th>{{ 'tab.remaining'|trans }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if subject is not defined %}
+                    {% set subject = "" %}
+                {% endif %}
+                {% for resource in resources %}
+                    <tr onclick="location.href=''">
+                        <td>{{ resource.id|highlight(subject)|raw }}</td>
+                        <td>{{ resource.label|highlight(subject)|raw }}</td>
+                        <td>{{ resource.unitPrice|number_format(2, '.', ',') }}</td>
+                        {% if resource.available is null %}
+                            <td>&infin;</td>
+                        {% else %}
+                            <td>{{ resource.available | number_format(0) }}</td>
+                        {% endif %}
+                        <td>?</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% import "AppBundle:Order:common.hmtl.twig" as common %}
+
+<div class="row">
+    <div class="col-md-6">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Jedzenie w restauracji w sobotę</h3>
+            </div>
+            <div class="panel-body">
+                {{ common.number('sniadanie_so_dz', map) }}
+                {{ common.number('sniadanie_so_do', map) }}
+                {{ common.number('obiad_so_dz', map) }}
+                {{ common.number('obiad_so_do', map) }}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Jedzenie w restauracji w niedzielę</h3>
+            </div>
+            <div class="panel-body">
+                {{ common.number('sniadanie_nie_dz', map) }}
+                {{ common.number('sniadanie_nie_do', map) }}
+                {{ common.number('obiad_nie_dz', map) }}
+                {{ common.number('obiad_nie_do', map) }}
+            </div>
+        </div>
+    </div>
+</div>

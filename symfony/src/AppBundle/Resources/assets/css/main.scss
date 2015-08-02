@@ -115,3 +115,17 @@ $previewHeight: 300px;
     background-repeat: no-repeat;
   }
 }
+
+.my-badge {
+  @include border-radius(4px);
+  padding: 3px 2px 2px 2px;
+  min-width: 22px;
+  font-size: 0.8em;
+  background: #28aa59;
+}
+
+.unitPrice {
+  font-size: 0.9em;
+  color: #aaaaaa;
+  font-style: italic;
+}

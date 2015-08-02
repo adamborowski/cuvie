@@ -1,0 +1,1 @@
+Dygraph.prototype.panToTime=function(time){var g=this;var range=g.xAxisRange();var minDate=range[0];var maxDate=range[1];var delta=0;if(minDate>time){delta=time-minDate}else if(maxDate<time){delta=time-maxDate}if(delta!=0){minDate+=delta;maxDate+=delta;g.updateOptions({dateWindow:[minDate,maxDate]})}};

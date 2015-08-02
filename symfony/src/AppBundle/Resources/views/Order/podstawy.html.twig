@@ -1,0 +1,56 @@
+{% import "AppBundle:Order:common.hmtl.twig" as common %}
+
+{# IMIĘ #}
+<div class="form-group">
+    <label for="firstName" class="col-sm-2 control-label">{{ 'resource.firstName'|trans }}</label>
+
+    <div class="col-sm-10">
+        <input type="text" class="form-control" id="firstName" placeholder="Imię zamawiającego">
+    </div>
+</div>
+{# NAZWISKO #}
+<div class="form-group">
+    <label for="lastName" class="col-sm-2 control-label">{{ 'resource.lastName'|trans }}</label>
+
+    <div class="col-sm-10">
+        <input type="text" class="form-control" id="lastName" placeholder="Nazwisko zamawiającego">
+    </div>
+</div>
+{# EMAIL #}
+<div class="form-group">
+    <label for="email" class="col-sm-2 control-label">Email</label>
+
+    <div class="col-sm-10">
+        <input type="email" class="form-control" id="email"
+               placeholder="Adres email, na który wyślemy potwierdzenie">
+    </div>
+</div>
+{{ common.number('liczbaDzieci', map) }}
+{{ common.number('liczbaDoroslych', map) }}
+{# DOJAZD #}
+<div class="form-group">
+    <label for="dojazd" class="col-sm-2 control-label">Dojazd</label>
+
+    <div class="col-sm-10">
+        <div class="input-group">
+            <label class="radio-inline">
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" ng-model="transport"
+                       value="own">we własnym zakresie
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="provided" ng-model="transport">
+                autokarem
+            </label>
+
+            <div class="input-group-addon">
+
+                <div ng-switch="transport">
+                    <div ng-switch-when="own" ng-bind-html-unsafe="axb(0,map.autokar.unitPrice)"></div>
+                    <div ng-switch-when="provided"
+                         ng-bind-html-unsafe="axb(input.liczbaDzieci+input.liczbaDoroslych,map.autokar.unitPrice)"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

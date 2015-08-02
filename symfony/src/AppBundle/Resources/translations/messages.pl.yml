@@ -13,7 +13,7 @@ tab.date: Data
 tab.value: Wartość
 tab.ratio: Przelicznik
 home.title: Lista walut
-home.header: Waluty ({count}) zaimportowane <span class="nobr">od {from} do {to}</span<
+home.header: Waluty ({count}) zaimportowane <span class="nobr">od {from} do {to}</span>
 home.tip.header: Wskazówka
 home.tip: Kliknij wybrany wiersz aby wyświetlić szczegóły waluty
 search.title: Wyniki wyszukiwania
@@ -33,3 +33,17 @@ error.message.unknown: Nieznany błąd
 about.header: O aplikacji
 about.file: AppBundle:About:article/pl.html.twig
 source_code: Kod źródłowy
+
+tab.id: Identyfikator
+tab.unitPrice: Cena jednostkowa
+tab.available: Dostępność
+tab.remaining: Pozostało
+resources.title: Zasoby
+resources.header: Typy zasobów, które można rezerwować ({count})
+resources.tip: Kliknij wybrany wiersz aby zmienić parametry zasobu (TODO)
+order.title: Spływ Lokomotywy
+order.header: Wypełnij formularz
+order.tip.header: Do zapłaty
+
+resource.firstName: Imię
+resource.lastName: Nazwisko
