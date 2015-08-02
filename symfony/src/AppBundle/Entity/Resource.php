@@ -36,6 +36,7 @@ class Resource
     {
         $this->desc = $desc;
     }
+
     /**
      * @ORM\Column(type="string", length=100)
      */
@@ -131,5 +132,13 @@ class Resource
     public function setAvailable($available)
     {
         $this->available = $available;
+    }
+
+    public function getRemaining()
+    {
+        if($this->getAvailable()==null){
+            return null;
+        }
+        return rand(0, 5);
     }
 }

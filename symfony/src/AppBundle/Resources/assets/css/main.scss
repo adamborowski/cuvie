@@ -129,3 +129,8 @@ $previewHeight: 300px;
   color: #aaaaaa;
   font-style: italic;
 }
+
+.a-disabled{
+  @include opacity(0.5);
+  pointer-events:none;
+}

@@ -25,8 +25,8 @@
                placeholder="Adres email, na który wyślemy potwierdzenie">
     </div>
 </div>
-{{ common.number('liczbaDzieci', map) }}
-{{ common.number('liczbaDoroslych', map) }}
+{{ common.number('liczbaDzieci') }}
+{{ common.number('liczbaDoroslych') }}
 {# DOJAZD #}
 <div class="form-group">
     <label for="dojazd" class="col-sm-2 control-label">Dojazd</label>
@@ -43,11 +43,10 @@
             </label>
 
             <div class="input-group-addon">
-
                 <div ng-switch="transport">
-                    <div ng-switch-when="own" ng-bind-html-unsafe="axb(0,map.autokar.unitPrice)"></div>
+                    <div ng-switch-when="own" ng-bind-html-unsafe="common.axb(0,map.autokar.unitPrice)"></div>
                     <div ng-switch-when="provided"
-                         ng-bind-html-unsafe="axb(input.liczbaDzieci+input.liczbaDoroslych,map.autokar.unitPrice)"></div>
+                         ng-bind-html-unsafe="common.apbxc(childrenScope.liczbaDzieci.value,childrenScope.liczbaDoroslych.value,map.autokar.unitPrice)"></div>
                 </div>
 
             </div>

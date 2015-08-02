@@ -1,23 +1,23 @@
-{% macro number (id, map, remaining) %}
-    <div class="form-group">
+{% macro number (id) %}
+    <div class="form-group" ng-controller="ConstraintController"
+         ng-init="init('{{ id }}')"
+         ng-class="config.remaining==0?'a-disabled':''"
+            >
         <label for="input-{{ id }}" class="col-sm-2 control-label">
-            {{ map[id].label }}
-            {% if remaining is not null %}
-                <span class="badge my-badge" id="remaining-{{ id }}" title="Dostępna liczba">{{ remaining }}</span>
-
-            {% endif %}
+            { config.label }
+            <span ng-show="config.remaining!=null" class="badge my-badge" title="Dostępna liczba">{ config.remaining }</span>
         </label>
 
         <div class="col-sm-10">
             <div class="input-group">
-                <input type="number" class="form-control" id="input-{{ id }}"
-                       min="0" placeholder="{{ map[id].desc }}"
-                       ng-model="input.{{ id }}"
+                <input type="number" class="form-control"
+                       min="0" placeholder="{ config.desc }"
+                       ng-model="value"
+                       ng-attr-max="{ config.remaining }"
                         >
-
-                <div class="input-group-addon" id="calc-{{ id }}">
+                <div class="input-group-addon">
                     <div
-                         ng-bind-html-unsafe="axb(input.{{ id }}, map.{{ id }}.unitPrice )">
+                            ng-bind-html-unsafe="common.axb(value,price)">
                     </div>
                 </div>
 
