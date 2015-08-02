@@ -26,6 +26,7 @@ myApp.factory('common', function () {
 
 myApp.controller('OrderController', ['$scope', 'common', '$http', '$timeout', function ($scope, common, $http, $timeout) {
     $scope.status = "creation";
+    $scope.error = false;
     $scope.map = common.map;
     $scope.transport = 'own';
     $scope.childrenScope = {};
@@ -47,10 +48,11 @@ myApp.controller('OrderController', ['$scope', 'common', '$http', '$timeout', fu
     $scope.submit = function () {
         var data = {
             firstName: $scope.firstName,
-            lastNameName: $scope.lastName,
+            lastName: $scope.lastName,
             email: $scope.email,
             details: {},
-            transport: $scope.transport
+            transport: $scope.transport,
+            totalPrice: $scope.totalPrice()//I know, bad practise to not validate on server
         };
         for (var name in $scope.childrenScope) {
             if ($scope.childrenScope[name].value != null) {
@@ -59,18 +61,21 @@ myApp.controller('OrderController', ['$scope', 'common', '$http', '$timeout', fu
 
         }
         $scope.status = "pending";
+        $scope.error = false;
         $http.post(myApp.formSubmitUrl, data).
             then(function (response) {
                 // this callback will be called asynchronously
                 // when the response is available
                 $timeout(function () {
-                    $scope.status = "finish";
+                    $scope.status = "creation";
+                    //$scope.status = "finish";//TODO
                 }, 1000);
             }, function (response) {
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
                 //alert('error')
                 $scope.status = "creation";
+                $scope.error = true;
             });
     };
 

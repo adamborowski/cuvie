@@ -11,7 +11,7 @@
         <div class="col-sm-10">
             <div class="input-group">
                 <input type="number" class="form-control"
-                       min="0" placeholder="{ config.desc }"
+                       min="0" placeholder="{ config.desc + (config.remaining==0?' (brak)':'') }"
                        ng-model="value"
                        ng-attr-max="{ config.remaining }"
                         >

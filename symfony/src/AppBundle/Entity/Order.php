@@ -12,7 +12,7 @@ class Order
 {
     /**
      * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Id
      */
     protected $id;

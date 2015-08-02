@@ -45,6 +45,8 @@
             </span>
             </p>
 
+            <div class="alert alert-danger" ng-show="error" role="alert">Formularz zawiera błędy, spróbuj ponownie.
+            </div>
             <form class="form-horizontal" name="orderForm" ng-submit="submit()" ng-show="status=='creation'">
                 <div class="panel panel-default">
                     <div class="panel-heading">

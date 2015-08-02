@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Order;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -10,6 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class OrderController extends Controller
 {
@@ -48,7 +50,20 @@ class OrderController extends Controller
      */
     public function submitOrderAction(Request $request)
     {
-        
+        $content = json_decode($request->getContent());
+        $order = new Order();
+        $order->setFirstName($content->firstName);
+        $order->setLastName($content->lastName);
+        $order->setCreationDate(new \DateTime());
+        $order->setEmail($content->email);
+        $order->setTotalPrice($content->totalPrice);
+
+        foreach (get_object_vars($content->details) as $name => $detail) {
+            $order->setDetail($name, $detail);
+        }
+        $em = $this->getDoctrine()->getEntityManager();
+        $em->persist($order);
+        $em->flush();
         return new Response('OK', Response::HTTP_OK);
     }
 }
