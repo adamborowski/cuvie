@@ -109,8 +109,10 @@ class OrderController extends Controller
         if (isset($content->id)) {
             $order = $this->getDoctrine()->getRepository("AppBundle\\Entity\\Order")->find($content->id);
             $order->setDetails([]);
+            $edit = true;
         } else {
             $order = new Order();
+            $edit = false;
         }
         $order->setFirstName($content->firstName);
         $order->setLastName($content->lastName);
@@ -125,7 +127,45 @@ class OrderController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
         $em->persist($order);
         $em->flush();
+        $this->sendMail($order, $edit);
         return new Response('OK', Response::HTTP_OK);
+    }
+
+    private function sendMail(Order $order, $edit)
+    {
+        $resourcesRepo = $this->getDoctrine()->getRepository("AppBundle\\Entity\\Resource");
+        $resources = $resourcesRepo->findAll();
+        $resMap = [];
+        foreach ($resources as $resource) {
+            $resMap[$resource->getId()] = $resource;
+        }
+
+
+        $cnt = $this->container;
+        $message = \Swift_Message::newInstance()
+            ->setSubject($edit ? 'Zmiana rezerwacji' : 'Potwierdzenie rezerwacji')
+            ->setFrom($cnt->getParameter("respond1"))
+            ->setTo($order->getEmail())
+            ->setBcc([$cnt->getParameter("respond1"), $cnt->getParameter("respond2")])
+            ->setBody(
+                $this->renderView(
+                // app/Resources/views/Emails/registration.html.twig
+                    'AppBundle:Order:mail.html.twig',
+                    ['edit' => $edit, 'order' => $order, 'res' => $resMap]
+                ),
+                'text/html'
+            )/*
+             * If you also want to include a plaintext version of the message
+            ->addPart(
+                $this->renderView(
+                    'Emails/registration.txt.twig',
+                    array('name' => $name)
+                ),
+                'text/plain'
+            )
+            */
+        ;
+        $success = $this->get('mailer')->send($message);
     }
 
     /**
@@ -140,5 +180,22 @@ class OrderController extends Controller
         $em->remove($order);
         $em->flush();
         return $this->redirect($this->generateUrl('orders'));
+    }
+
+    /**
+     * @Route("/mailPreview/{id}", name="mailPreview")
+     * @Method("GET")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function mailPreviewAction($id)
+    {
+        $resourcesRepo = $this->getDoctrine()->getRepository("AppBundle\\Entity\\Resource");
+        $resources = $resourcesRepo->findAll();
+        $resMap = [];
+        foreach ($resources as $resource) {
+            $resMap[$resource->getId()] = $resource;
+        }
+        $order = $this->getDoctrine()->getRepository("AppBundle\\Entity\\Order")->find($id);
+        return $this->render("AppBundle:Order:mail.html.twig", ['order' => $order, 'res' => $resMap, 'edit' => true]);
     }
 }

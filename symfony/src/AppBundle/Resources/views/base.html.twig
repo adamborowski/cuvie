@@ -19,7 +19,9 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
 </head>
 <body>
-{% include "AppBundle::header.html.twig" %}
+{% block header %}
+    {% include "AppBundle::header.html.twig" %}
+{% endblock %}
 <div class="a-page-content">
     {% block body %}{% endblock %}
 </div>

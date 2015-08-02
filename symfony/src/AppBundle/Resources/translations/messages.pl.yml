@@ -1,4 +1,5 @@
 currencyList: Lista
+tabTitle: Lokomotywa: rejestracja
 createOrder: 'Nowe zgłoszenie'
 signIn: Zaloguj się
 signOut: Wyloguj się
@@ -58,3 +59,7 @@ orders.title: Zamówienia
 
 resource.firstName: Imię
 resource.lastName: Nazwisko
+
+eventName: Spływ Lokomotywy
+eventPlace: Piła Młyn
+eventDate: 28-30.08.2015
