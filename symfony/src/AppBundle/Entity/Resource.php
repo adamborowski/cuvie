@@ -24,6 +24,10 @@ class Resource
     /**
      * @ORM\Column(type="string", length=100)
      */
+    protected $longLabel;
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
     protected $desc;
     /**
      * @ORM\Column(type="float")
@@ -149,5 +153,24 @@ class Resource
     public function setAvailable($available)
     {
         $this->available = $available;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLongLabel()
+    {
+        if ($this->longLabel == null) {
+            return $this->getLabel();
+        }
+        return $this->longLabel;
+    }
+
+    /**
+     * @param mixed $longLabel
+     */
+    public function setLongLabel($longLabel)
+    {
+        $this->longLabel = $longLabel;
     }
 }

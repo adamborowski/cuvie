@@ -31,6 +31,7 @@ myApp.controller('OrderController', ['$scope', 'common', '$http', '$timeout', fu
     $scope.transport = 'own';
     $scope.childrenScope = {};
 
+
     $scope.totalPrice = function () {
         var total = 0;
         var childrenScope = $scope.childrenScope;
@@ -54,6 +55,9 @@ myApp.controller('OrderController', ['$scope', 'common', '$http', '$timeout', fu
             transport: $scope.transport,
             totalPrice: $scope.totalPrice()//I know, bad practise to not validate on server
         };
+        if (myApp.order) {
+            data.id = myApp.order.id;
+        }
         for (var name in $scope.childrenScope) {
             if ($scope.childrenScope[name].value != null) {
                 data.details[name] = $scope.childrenScope[name].value
@@ -67,8 +71,12 @@ myApp.controller('OrderController', ['$scope', 'common', '$http', '$timeout', fu
                 // this callback will be called asynchronously
                 // when the response is available
                 $timeout(function () {
-                    $scope.status = "creation";
-                    //$scope.status = "finish";//TODO
+                    if (myApp.order) {
+                        $scope.status = "creation";
+                    }
+                    else {
+                        $scope.status = "finish";
+                    }
                 }, 1000);
             }, function (response) {
                 // called asynchronously if an error occurs
@@ -78,8 +86,31 @@ myApp.controller('OrderController', ['$scope', 'common', '$http', '$timeout', fu
                 $scope.error = true;
             });
     };
+    $scope.order = myApp.order;
+    //fill current data
 
+    if (myApp.order) {
+        //var data = {
+        //    firstName: $scope.firstName,
+        //    lastName: $scope.lastName,
+        //    email: $scope.email,
+        //    details: {},
+        //    transport: $scope.transport,
+        //    totalPrice: $scope.totalPrice()//I know, bad practise to not validate on server
+        //};
+        var s = $scope, o = myApp.order;
+        s.firstName = o.firstName;
+        s.lastName = o.lastName;
+        s.email = o.email;
+        s.transport = o.details.transport || 'own';
 
+        //for (var name in o.details) {
+        //    debugger
+        //    if (s.childrenScope[name]) {
+        //        s.childrenScope[name].value = o.details[name];
+        //    }
+        //}
+    }
     $scope.common = common;
 }]);
 
@@ -92,5 +123,11 @@ myApp.controller('ConstraintController', ['$scope', 'common', function (that, co
             return common.map[name].remaining - that.value;
         };
         that.config = common.map[name];
+        var o = myApp.order;
+        if (o) {
+            if (o.details[name]) {
+                that.value = o.details[name];
+            }
+        }
     }
 }]);

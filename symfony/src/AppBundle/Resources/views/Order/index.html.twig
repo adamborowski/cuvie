@@ -1,0 +1,75 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block body %}
+    {% set route = app.request.get('_route') %}
+
+
+    <div class="container" style="width:900px">
+        <h1>{{ "orders.title"|trans }}</h1>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Dane podstawowe</h3>
+            </div>
+
+            <div class="panel-body">
+                <table class="a-table table table-striped table-hover text-nowrap">
+                    <thead>
+                    <tr>
+                        <th>{{ 'tab.firstName'|trans }}</th>
+                        <th>{{ 'tab.lastName'|trans }}</th>
+                        <th>{{ 'tab.email'|trans }}</th>
+                        <th>{{ 'tab.totalPrice'|trans }}</th>
+                        <th>{{ 'tab.creationDate'|trans }}</th>
+                        <th>{{ map.liczbaDzieci.label }}</th>
+                        <th>{{ map.liczbaDoroslych.label }}</th>
+                        <th>{{ map.kajak.label }}</th>
+                        <th>{{ map.canoe.label }}</th>
+                        <th>Autokar</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% if subject is not defined %}
+                        {% set subject = "" %}
+                    {% endif %}
+                    {% for order in orders %}
+                        <tr onclick="window.location.href='{{ path('editOrder', {id:order.id}) }}'">
+                            <td>{{ order.firstName|highlight(subject)|raw }}</td>
+                            <td>{{ order.lastName|highlight(subject)|raw }}</td>
+                            <td>{{ order.email|highlight(subject)|raw }}</td>
+                            <td>{{ order.totalPrice|price }}</td>
+                            <td>{{ order.creationDate|date('Y-m-d H:i') }}</td>
+                            <td>{{ order.getDetail('liczbaDzieci')|default('-') }}</td>
+                            <td>{{ order.getDetail('liczbaDoroslych')|default('-') }}</td>
+                            <td>{{ order.getDetail('kajak')|default('-') }}</td>
+                            <td>{{ order.getDetail('canoe')|default('-') }}</td>
+                            <td>{% if order.detail('transport')|default('own') =='provided' %}
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Podsumowanie</h3>
+            </div>
+
+            <div class="panel-body">
+                <table class="table table-striped">
+                    {% for resource in resources if resource.id not in ['organizacja'] %}
+                        <tr>
+                            <th>{{ resource.longLabel }}</th>
+                            <td>{{ summary[resource.id] }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

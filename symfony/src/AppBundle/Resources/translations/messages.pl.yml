@@ -1,4 +1,5 @@
 currencyList: Lista
+createOrder: 'Nowe zgłoszenie'
 signIn: Zaloguj się
 search: Znajdź walutę
 submit: wyślij
@@ -12,6 +13,11 @@ tab.avg: Średnia
 tab.date: Data
 tab.value: Wartość
 tab.ratio: Przelicznik
+tab.firstName: Imię
+tab.lastName: Nazwisko
+tab.email: Email
+tab.creationDate: Data złożenia
+tab.totalPrice: Kwota
 home.title: Lista walut
 home.header: Waluty ({count}) zaimportowane <span class="nobr">od {from} do {to}</span>
 home.tip.header: Wskazówka
@@ -43,7 +49,11 @@ resources.header: Typy zasobów, które można rezerwować ({count})
 resources.tip: Kliknij wybrany wiersz aby zmienić parametry zasobu (TODO)
 order.title: Spływ Lokomotywy
 order.header: Wypełnij formularz
+order.header.edit: Edycja zgłoszenia
 order.tip.header: Do zapłaty
+
+orders.title: Zamówienia
+
 
 resource.firstName: Imię
 resource.lastName: Nazwisko

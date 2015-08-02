@@ -21,7 +21,7 @@ class Order
      */
     protected $firstName;
     /**
-     * @ORM\Column(type="date", length=100)
+     * @ORM\Column(type="datetime", length=100)
      */
     protected $creationDate;
     /**
@@ -169,10 +169,14 @@ class Order
 
     public function getDetail($name)
     {
-        return $this->details[$name];
+        if ($this->isDetailSet($name)) {
+            return $this->details[$name];
+        }
+        return null;
     }
 
-    public function  isDetailSet($name){
+    public function  isDetailSet($name)
+    {
         return isset($this->details[$name]);
     }
 }
