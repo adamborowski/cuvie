@@ -137,7 +137,7 @@ class OrderController extends Controller
         $cnt = $this->container;
         $message = \Swift_Message::newInstance()
             ->setSubject($edit ? "Zmiana Twojej rezerwacji" : "Potwierdzenie rejestracji")
-            ->setFrom($cnt->getParameter("respond1"))
+            ->setFrom([$cnt->getParameter("respond1")=>"System rejestracji Lokomotywy"])
             ->setTo($order->getEmail())
             ->setBcc([$cnt->getParameter("respond1"), $cnt->getParameter("respond2")])
             ->setBody(
