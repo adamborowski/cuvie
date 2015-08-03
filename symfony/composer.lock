@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f60bc57865557cbf8224f1554e37445e",
+    "hash": "09fb945b8991e885286ee388b393978c",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1051,6 +1051,59 @@
             "time": "2012-12-21 11:40:51"
         },
         {
+            "name": "robertotru/to-inline-style-email-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/robertotru/ToInlineStyleEmailBundle.git",
+                "reference": "9505b0816a926a9b0357b13be1e367fdcd633052"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/robertotru/ToInlineStyleEmailBundle/zipball/9505b0816a926a9b0357b13be1e367fdcd633052",
+                "reference": "9505b0816a926a9b0357b13be1e367fdcd633052",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "tijsverkoyen/css-to-inline-styles": "~1.5.2"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "RobertoTru\\ToInlineStyleEmailBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Roberto Trunfio",
+                    "email": "rtrunfio@deis.unical.it",
+                    "homepage": "http://www.trunfio.it",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Symfony2 bundle for using the CssToInlineStyles translator by tijsverkoyen",
+            "homepage": "http://github.com/robertotru/ToInlineStyleEmailBundle",
+            "keywords": [
+                "bundle",
+                "css",
+                "email",
+                "inline",
+                "style",
+                "symfony"
+            ],
+            "time": "2015-05-01 07:40:13"
+        },
+        {
             "name": "sensio/distribution-bundle",
             "version": "v3.0.31",
             "target-dir": "Sensio/Bundle/DistributionBundle",
@@ -1609,6 +1662,53 @@
             "time": "2015-07-26 10:44:22"
         },
         {
+            "name": "tijsverkoyen/css-to-inline-styles",
+            "version": "1.5.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tijsverkoyen/CssToInlineStyles.git",
+                "reference": "3065b197f54c83392a4e0ba355678a5080dd9ee2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tijsverkoyen/CssToInlineStyles/zipball/3065b197f54c83392a4e0ba355678a5080dd9ee2",
+                "reference": "3065b197f54c83392a4e0ba355678a5080dd9ee2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "symfony/css-selector": "~2.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.5.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TijsVerkoyen\\CssToInlineStyles\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD"
+            ],
+            "authors": [
+                {
+                    "name": "Tijs Verkoyen",
+                    "email": "css_to_inline_styles@verkoyen.eu",
+                    "role": "Developer"
+                }
+            ],
+            "description": "CssToInlineStyles is a class that enables you to convert HTML-pages/files into HTML-pages/files with inline styles. This is very useful when you're sending emails.",
+            "homepage": "https://github.com/tijsverkoyen/CssToInlineStyles",
+            "time": "2015-04-01 14:40:03"
+        },
+        {
             "name": "twig/extensions",
             "version": "v1.2.0",
             "source": {
@@ -1721,7 +1821,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "robertotru/to-inline-style-email-bundle": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
