@@ -1,6 +1,8 @@
 {% extends 'AppBundle::base.html.twig' %}
 
 {% set edit = order is defined %}
+{% set json = map|serialize %}
+{% if order is defined %}{% set orderJson = order|serialize %}{% endif %}
 
 {% block javascripts %}
     {{ parent() }}

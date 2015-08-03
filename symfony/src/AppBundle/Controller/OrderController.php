@@ -65,9 +65,7 @@ class OrderController extends Controller
             $resMap[$resource->getId()] = $resource;
             $resource->setRemaining($repo->getRemaining($resource->getId()));
         }
-        $serializer = new Serializer(array(new GetSetMethodNormalizer()), array('json' => new JsonEncoder()));
-        $json = $serializer->serialize($resMap, 'json');
-        return $this->render('AppBundle:Order:createOrder.html.twig', ['map' => $resMap, 'json' => $json]);
+        return $this->render('AppBundle:Order:createOrder.html.twig', ['map' => $resMap]);
     }
 
     /**
@@ -86,14 +84,9 @@ class OrderController extends Controller
             $resMap[$resource->getId()] = $resource;
             $resource->setRemaining($resourcesRepo->getRemaining($resource->getId()));
         }
-        $serializer = new Serializer(array(new GetSetMethodNormalizer()), array('json' => new JsonEncoder()));
-        $json = $serializer->serialize($resMap, 'json');
-        $orderJson = $serializer->serialize($order, 'json');
         return $this->render('AppBundle:Order:createOrder.html.twig', [
             'map' => $resMap,
-            'json' => $json,
             'order' => $order,
-            'orderJson' => $orderJson
         ]);
     }
 
@@ -143,7 +136,7 @@ class OrderController extends Controller
 
         $cnt = $this->container;
         $message = \Swift_Message::newInstance()
-            ->setSubject($edit ? 'Zmiana rezerwacji' : 'Potwierdzenie rezerwacji')
+            ->setSubject('Hello Email')
             ->setFrom($cnt->getParameter("respond1"))
             ->setTo($order->getEmail())
             ->setBcc([$cnt->getParameter("respond1"), $cnt->getParameter("respond2")])

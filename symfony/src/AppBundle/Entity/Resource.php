@@ -26,7 +26,7 @@ class Resource
      */
     protected $longLabel;
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, name="description")
      */
     protected $desc;
     /**
@@ -160,9 +160,6 @@ class Resource
      */
     public function getLongLabel()
     {
-        if ($this->longLabel == null) {
-            return $this->getLabel();
-        }
         return $this->longLabel;
     }
 

@@ -2,6 +2,10 @@
 namespace AppBundle\Twig;
 
 
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
+use Symfony\Component\Serializer\Serializer;
+
 class AppExtension extends \Twig_Extension
 {
     public function getFilters()
@@ -9,6 +13,7 @@ class AppExtension extends \Twig_Extension
         return array(
             new \Twig_SimpleFilter('highlight', array($this, 'highlightFilter')),
             new \Twig_SimpleFilter('price', array($this, 'priceFilter')),
+            new \Twig_SimpleFilter('serialize', array($this, 'serializeFilter'), array('is_safe' => array('html'))),
         );
     }
 
@@ -24,6 +29,12 @@ class AppExtension extends \Twig_Extension
     public function priceFilter($text)
     {
         return "$text PLN";
+    }
+
+    public function serializeFilter($entity)
+    {
+        $serializer = new Serializer(array(new GetSetMethodNormalizer()), array('json' => new JsonEncoder()));
+        return $serializer->serialize($entity, 'json');
     }
 
     public function getName()

@@ -1,4 +1,4 @@
-currencyList: Lista
+currencyList: Zgłoszenia
 tabTitle: Lokomotywa: rejestracja
 createOrder: 'Nowe zgłoszenie'
 signIn: Zaloguj się
@@ -49,6 +49,8 @@ tab.remaining: Pozostało
 resources.title: Zasoby
 resources.header: Typy zasobów, które można rezerwować ({count})
 resources.tip: Kliknij wybrany wiersz aby zmienić parametry zasobu (TODO)
+
+
 order.title: Spływ Lokomotywy
 order.header: Wypełnij formularz
 order.header.edit: Edycja zgłoszenia
@@ -59,6 +61,8 @@ orders.title: Zamówienia
 
 resource.firstName: Imię
 resource.lastName: Nazwisko
+resource.edit.title: Edycja zasobu
+resource.new.title: Nowy zasób
 
 eventName: Spływ Lokomotywy
 eventPlace: Piła Młyn

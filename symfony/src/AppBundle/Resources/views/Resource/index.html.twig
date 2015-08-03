@@ -26,7 +26,7 @@
                     <th>{{ 'tab.name'|trans }}</th>
                     <th>{{ 'tab.unitPrice'|trans }}</th>
                     <th>{{ 'tab.available'|trans }}</th>
-                    <th>{{ 'zarezerowano' }}</th>
+                    <th>{{ 'Zarezerowano' }}</th>
                     <th>{{ 'tab.remaining'|trans }}</th>
                 </tr>
                 </thead>
@@ -35,7 +35,7 @@
                     {% set subject = "" %}
                 {% endif %}
                 {% for resource in resources %}
-                    <tr onclick="location.href=''">
+                    <tr onclick="location.href='{{ path('resource', {id:resource.id}) }}'">
                         <td>{{ resource.id|highlight(subject)|raw }}</td>
                         <td>{{ resource.label|highlight(subject)|raw }}</td>
                         <td>{{ resource.unitPrice|number_format(2, '.', ',') }}</td>
@@ -46,6 +46,7 @@
                         {% else %}
                             <td>{{ resource.available | number_format(0) }}</td>
                             <td>{{ (resource.available - resource.remaining) | number_format(0) }}</td>
+                            <td>{{ (resource.remaining) | number_format(0) }}</td>
                         {% endif %}
                     </tr>
                 {% endfor %}

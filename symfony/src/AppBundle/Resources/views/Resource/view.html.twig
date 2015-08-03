@@ -1,0 +1,88 @@
+{% extends 'AppBundle::base.html.twig' %}
+{% set edit = resource is defined %}
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts
+    "https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"
+    "@AppBundle/Resources/assets/js/pages/resource.js" %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script>
+        myApp.formSubmitUrl = '{{ path('updateResource')}}';
+        {% if edit %}
+        myApp.resource ={{ resource|serialize }};
+        {% endif %}
+    </script>
+{% endblock %}
+{% block body %}
+    <div ng-app="resourceApp" ng-controller="ResourceController">
+        <div class="container" style="width:900px">
+            <h1>{% if edit %}{{ "resource.edit.title"|trans }}{% else %}{{ "resource.new.title"|trans }}{% endif %}</h1>
+            {% if edit %}<p class="lead">{{ resource.longLabel|default(resource.label) }}</p>{% endif %}
+            <div class="alert alert-danger" ng-show="error" role="alert">Formularz zawiera błędy, spróbuj ponownie.
+            </div>
+            <form class="form-horizontal" name="resourceForm" ng-submit="submit()" ng-show="status!='finish'"
+                  ng-class="status=='pending'?'a-disabled':''">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Dane podstawowe</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="label" class="col-sm-2 control-label">Nazwa krótka</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="entity.label">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="longLabel" class="col-sm-2 control-label">Nazwa długa</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="entity.longLabel"
+                                       placeholder="Bez zmian">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="desc" class="col-sm-2 control-label">Opis</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="entity.desc">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="unitPrice" class="col-sm-2 control-label">Cena jednostkowa</label>
+
+                            <div class="col-sm-10">
+                                <input type="number" min="0" class="form-control" ng-model="entity.unitPrice">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="available" class="col-sm-2 control-label">Dostępność</label>
+
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" ng-model="entity.available"
+                                       placeholder="wartość pusta oznacza brak ograniczenia">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit"
+                                class="btn btn-primary">{% if edit %}Aktualizuj{% else %}Rejestruj{% endif %}</button>
+                        {% if edit %}
+                            {#<a class="btn btn-danger" href="{{ path('removeResource', {id: resource.id}) }}">Usuń#}
+                            {#zasób</a>#}
+                            <a class="btn btn-info" href="{{ path('resources') }}">Powrót do listy</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </form>
+            <p ng-show="status=='finish'">
+                Zgłoszenie zostało przyjęte. Potwierdzenie zostanie przesłane pod adres <strong>{email}</strong>.
+            </p>
+        </div>
+    </div>
+
+{% endblock %}

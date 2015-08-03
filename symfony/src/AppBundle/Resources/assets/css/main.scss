@@ -131,6 +131,6 @@ $previewHeight: 300px;
 }
 
 .a-disabled{
-  @include opacity(0.5);
+  @include opacity(0.36);
   pointer-events:none;
 }
