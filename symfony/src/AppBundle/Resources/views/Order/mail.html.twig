@@ -1,3 +1,5 @@
+{% inlinecss "@AppBundle/Resources/public/bootstrap.min.css" %}
+{% inlinecss "@AppBundle/Resources/assets/css/mail.scss" %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,104 +11,98 @@
     <meta http-equiv="Pragma" content="no-cache"/>
 </head>
 <body>
-{% inlinecss "@AppBundle/Resources/public/bootstrap.min.css" %}
 
 
 {% macro item(order, res, id, label, value) %}
     {% if order.details[id] is defined and order.details[id]> 0 %}
         <tr>
-            <td style="text-align: right">{{ label }}</td>
+            <td>{{ label }}</td>
             <td>{{ order.details[id] }}</td>
             <td>{{ res[id].unitPrice }} PLN</td>
             <td>{{ res[id].unitPrice* order.details[id] }} PLN</td>
         </tr>
     {% endif %}
 {% endmacro %}
-<div style="padding:0px 10px; color: #232323">
-    <h2>{{ "order.title"|trans|raw }}
-    </h2>
 
-    <h3>{{ 'eventPlace'|trans }}
-        <small>{{ 'eventDate'|trans }}</small>
-    </h3>
-    <p class="lead">
-        Witaj, {{ order.firstName }} {{ order.lastName }}.
-    </p>
-
-    <p>Zgłoszenie zostało {% if edit %}<strong>zmienione</strong>{% else %}przyjęte{% endif %}. Poniżej
-        przedstawiono szczegóły rezerwacji.</p>
-
-    <p class="alert alert-success" style="display: inline-block">Łączny koszt: {{ order.totalPrice }} PLN</p>
-    <table class="table table-bordered" style="width:600px; border: 1px solid #cecece; font-size:12px; margin: 20px 0px"
-           cellpadding="2">
-        <thead>
-        <tr>
-            <th>Nazwa</th>
-            <th>Liczba</th>
-            <th>Cena</th>
-            <th>Koszt</th>
-        </tr>
-        </thead>
-        <tbody>
-        {{ _self.item(order, res, 'liczbaDzieci','Liczba dzieci' ) }}
-        {{ _self.item(order, res, 'liczbaDoroslych','Liczba dorosłych' ) }}
-        <tr>
-            <td style="text-align: right;">Dojazd</td>
-            {% if order.details.transport =='provided' %}
-                <td>autokarem</td>
-                <td>{{ res.autokar.unitPrice }} PLN</td>
-                <td>{{ (order.details.liczbaDzieci|default(0)+order.details.liczbaDoroslych|default(0))*res.organizacja.unitPrice }}PLN
-                </td>
-            {% else %}
-                <td>własny</td>
-                <td>-</td>
-                <td>-</td>
-            {% endif %}
-        </tr>
-        {{ _self.item(order, res, 'kajak','Wynajem kajaków' ) }}
-        {{ _self.item(order, res, 'canoe','Wynajem canoe' ) }}
-        {{ _self.item(order, res, 'namiot_1_noc','Wynajem namiotu na jedną noc' ) }}
-        {{ _self.item(order, res, 'namiot_2_noce','Wynajem namiotu na dwie noce' ) }}
-        {{ _self.item(order, res, 'domek34','Wynajem domku 3-4 osobowego na dwie noce' ) }}
-        {{ _self.item(order, res, 'domek56','Wynajem domku 5-6 osobowego na dwie noce' ) }}
-        {{ _self.item(order, res, 'sniadanie_so_dz','Śniadanie w sobotę, porcja dla dziecka' ) }}
-        {{ _self.item(order, res, 'sniadanie_so_do','Śniadanie w sobotę, porcja dla dorosłego' ) }}
-        {{ _self.item(order, res, 'obiad_so_dz','Obiad w sobotę, porcja dla dziecka' ) }}
-        {{ _self.item(order, res, 'obiad_so_do','Obiad w sobotę, porcja dla dorosłego' ) }}
-        {{ _self.item(order, res, 'sniadanie_nie_dz','Śniadanie w niedzielę, porcja dla dziecka' ) }}
-        {{ _self.item(order, res, 'sniadanie_nie_do','Śniadanie w niedzielę, porcja dla dorosłego' ) }}
-        {{ _self.item(order, res, 'obiad_nie_dz','Obiad w niedzielę, porcja dla dziecka' ) }}
-        {{ _self.item(order, res, 'obiad_nie_do','Obiad w niedzielę, porcja dla dorosłego' ) }}
-        </tbody>
-    </table>
-    Wpłatę w wysokości <strong>{{ order.totalPrice }} PLN</strong> prosimy przesłać na konto:
-    <br/>
-
-    <div
-            style="display: inline-block;
-         color: #808080;
-         border: 1px solid #eaeaea;
-         -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;
-         padding: 10px;
-         margin: 10px 0px;
-         background: #f4f4f4;
-         ">
-        Towarzystwo Edukacyjne Lokomotywa,
-        <br/>
-        ul. Obrońców Westerplatte 17/1, 81-706 Sopot
-        <br/>
-        70 1090 1098 0000 0001 2022 4480
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{ "order.title"|trans|raw }} - {{ 'eventPlace'|trans }}, {{ 'eventDate'|trans }}
+        </h3>
     </div>
-    <p>Termin wpłaty do 18.08.2015 r.</p>
+    <div class="panel-body">
 
-    <p>
-        W razie wszelkich pytań prosimy kontaktować się przez mail kontaktowy: wypoczynek@lokomotywa.edu.pl,
-        tel 605 600 511.</p>
 
-    <strong>Do zobaczenia!</strong>
+        <p class="lead">
+            Witaj, <strong>{{ order.firstName }} {{ order.lastName }}</strong>.
+        </p>
+
+        <p>Twoje zgłoszenie zostało {% if edit %}<strong>zmienione</strong>{% else %}przyjęte{% endif %}. Poniżej
+            przedstawiono szczegóły rezerwacji.</p>
+
+        <p class="alert alert-success" style="display: inline-block">Łączny koszt: {{ order.totalPrice }} PLN</p>
+        <table class="table table-bordered" cellpadding="2">
+            <thead>
+            <tr>
+                <th>Nazwa</th>
+                <th>Liczba</th>
+                <th>Cena</th>
+                <th>Koszt</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{ _self.item(order, res, 'liczbaDzieci','Liczba dzieci' ) }}
+            {{ _self.item(order, res, 'liczbaDoroslych','Liczba dorosłych' ) }}
+            <tr>
+                <td>Dojazd</td>
+                {% if order.details.transport =='provided' %}
+                    <td>autokarem</td>
+                    <td>{{ res.autokar.unitPrice }} PLN</td>
+                    <td>{{ (order.details.liczbaDzieci|default(0)+order.details.liczbaDoroslych|default(0))*res.organizacja.unitPrice }}
+                        PLN
+                    </td>
+                {% else %}
+                    <td>własny</td>
+                    <td>-</td>
+                    <td>-</td>
+                {% endif %}
+            </tr>
+            {{ _self.item(order, res, 'kajak','Wynajem kajaków' ) }}
+            {{ _self.item(order, res, 'canoe','Wynajem canoe' ) }}
+            {{ _self.item(order, res, 'namiot_1_noc','Wynajem namiotu na jedną noc' ) }}
+            {{ _self.item(order, res, 'namiot_2_noce','Wynajem namiotu na dwie noce' ) }}
+            {{ _self.item(order, res, 'domek34','Wynajem domku 3-4 osobowego na dwie noce' ) }}
+            {{ _self.item(order, res, 'domek56','Wynajem domku 5-6 osobowego na dwie noce' ) }}
+            {{ _self.item(order, res, 'sniadanie_so_dz','Śniadanie w sobotę, porcja dla dziecka' ) }}
+            {{ _self.item(order, res, 'sniadanie_so_do','Śniadanie w sobotę, porcja dla dorosłego' ) }}
+            {{ _self.item(order, res, 'obiad_so_dz','Obiad w sobotę, porcja dla dziecka' ) }}
+            {{ _self.item(order, res, 'obiad_so_do','Obiad w sobotę, porcja dla dorosłego' ) }}
+            {{ _self.item(order, res, 'sniadanie_nie_dz','Śniadanie w niedzielę, porcja dla dziecka' ) }}
+            {{ _self.item(order, res, 'sniadanie_nie_do','Śniadanie w niedzielę, porcja dla dorosłego' ) }}
+            {{ _self.item(order, res, 'obiad_nie_dz','Obiad w niedzielę, porcja dla dziecka' ) }}
+            {{ _self.item(order, res, 'obiad_nie_do','Obiad w niedzielę, porcja dla dorosłego' ) }}
+            </tbody>
+        </table>
+        Wpłatę w wysokości <strong>{{ order.totalPrice }} PLN</strong> prosimy przesłać na konto:
+        <br/>
+
+        <div class="well">
+            Towarzystwo Edukacyjne Lokomotywa,
+            <br/>
+            ul. Obrońców Westerplatte 17/1, 81-706 Sopot
+            <br/>
+            70 1090 1098 0000 0001 2022 4480
+        </div>
+        <p>Termin wpłaty do 18.08.2015 r.</p>
+
+        <p>
+            W razie wszelkich pytań prosimy kontaktować się przez mail kontaktowy: wypoczynek@lokomotywa.edu.pl,
+            tel 605 600 511.</p>
+
+        <strong>Do zobaczenia!</strong>
+    </div>
 </div>
-
 </body>
 </html>
 
+{% endinlinecss %}
 {% endinlinecss %}
