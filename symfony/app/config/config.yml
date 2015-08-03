@@ -73,9 +73,9 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: smtp
+    transport: "%mailer_transport%"
     encryption: ssl
-    host:      smtp.adamborowski.pl
+    host:      "%mailer_host%"
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     disable_delivery:  false

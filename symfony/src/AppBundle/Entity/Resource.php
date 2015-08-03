@@ -26,7 +26,7 @@ class Resource
      */
     protected $longLabel;
     /**
-     * @ORM\Column(type="string", length=100, name="description")
+     * @ORM\Column(type="string", length=100, name="description", nullable=true)
      */
     protected $desc;
     /**
