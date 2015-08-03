@@ -2,13 +2,6 @@
 
 {% block body %}
     <div class="container">
-        {% if resources|length %}
-            <div class="alert alert-dismissible alert-success pull-right a-home-alert">
-                <button type="button" class="close" data-dismiss="alert">×</button>
-                <h4>{{ 'resources.tip.header'|trans|raw }}</h4>
-                {{ 'resources.tip'|trans|raw }}
-            </div>
-        {% endif %}
         {% set route = app.request.get('_route') %}
         <h1>{{ "resources.title"|trans }}</h1>
 

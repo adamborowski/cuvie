@@ -48,7 +48,8 @@ tab.available: Dostępność
 tab.remaining: Pozostało
 resources.title: Zasoby
 resources.header: Typy zasobów, które można rezerwować ({count})
-resources.tip: Kliknij wybrany wiersz aby zmienić parametry zasobu (TODO)
+resources.tip.header: Edycja zasobów
+resources.tip: Kliknij wybrany wiersz aby zmienić parametry zasobu
 
 
 order.title: Spływ Lokomotywy

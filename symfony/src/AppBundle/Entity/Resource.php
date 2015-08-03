@@ -30,7 +30,7 @@ class Resource
      */
     protected $desc;
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float", nullable=true)
      */
     protected $unitPrice;
     /**
@@ -38,7 +38,7 @@ class Resource
      */
     protected $available;
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", name="_order", nullable=true)
      */
     protected $order;
     private $remaining;

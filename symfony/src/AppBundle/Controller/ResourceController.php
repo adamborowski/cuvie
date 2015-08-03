@@ -40,6 +40,14 @@ class ResourceController extends Controller
     }
 
     /**
+     * @Route("/createResource", name="createResource")
+     */
+    public function createResourceAction()
+    {
+        return $this->render('AppBundle:Resource:view.html.twig', []);
+    }
+
+    /**
      * @Route("/updateResource", name="updateResource")
      * @Method("POST")
      * @param Request $request
@@ -50,16 +58,21 @@ class ResourceController extends Controller
         $content = json_decode($request->getContent());
         $repo = $this->getDoctrine()->getRepository("AppBundle\\Entity\\Resource");
         /* @var $resource \AppBundle\Entity\Resource */
-        $resource = $repo->find($content->id);
-        if ($resource == null) {
-            throw new NotFoundHttpException("Resource not found");
+        if ($request->get("mode") == "create") {
+            $resource = new Resource();
+            $resource->setId($content->id);
+        } else {
+            $resource = $repo->find($content->id);
+            if ($resource == null) {
+                throw new NotFoundHttpException("Resource not found");
+            }
         }
         //
         $resource->setLabel($content->label);
-        $resource->setLongLabel($content->longLabel);
+        if (isset($content->longLabel)) $resource->setLongLabel($content->longLabel);
         $resource->setDesc($content->desc);
-        $resource->setUnitPrice(intval($content->unitPrice));
-        $resource->setAvailable($content->available);
+        if (isset($content->unitPrice)) $resource->setUnitPrice(intval($content->unitPrice));
+        if (isset($content->available)) $resource->setAvailable($content->available);
         //
         $em = $this->getDoctrine()->getEntityManager();
         $em->persist($resource);
@@ -69,11 +82,22 @@ class ResourceController extends Controller
 
     /**
      * @Route("/resources/{id}/remove", name="removeResource")
+     * @param $id
+     * @return Response
      */
     public function removeResourceAction($id)
     {
-
+        $repo = $this->getDoctrine()->getRepository("AppBundle\\Entity\\Resource");
+        /* @var $resource \AppBundle\Entity\Resource */
+        $resource = $repo->find($id);
+        if ($resource == null) {
+            throw new NotFoundHttpException("Resource not found");
+        }
+        //
+        $em = $this->getDoctrine()->getEntityManager();
+        $em->remove($resource);
+        $em->flush();
+        return $this->redirect($this->generateUrl('resources'));
     }
-
 
 }

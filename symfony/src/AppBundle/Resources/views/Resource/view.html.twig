@@ -8,7 +8,7 @@
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
     <script>
-        myApp.formSubmitUrl = '{{ path('updateResource')}}';
+        myApp.formSubmitUrl = '{{ path('updateResource')}}{{ edit?"":"?mode=create"}}';
         {% if edit %}
         myApp.resource ={{ resource|serialize }};
         {% endif %}
@@ -28,6 +28,16 @@
                         <h3 class="panel-title">Dane podstawowe</h3>
                     </div>
                     <div class="panel-body">
+                        {% if not edit %}
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Identyfikator</label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" ng-model="entity.id"
+                                           placeholder="wartość ustawiana tylko podczas tworzenia">
+                                </div>
+                            </div>
+                        {% endif %}
                         <div class="form-group">
                             <label for="label" class="col-sm-2 control-label">Nazwa krótka</label>
 
@@ -72,8 +82,8 @@
                         <button type="submit"
                                 class="btn btn-primary">{% if edit %}Aktualizuj{% else %}Rejestruj{% endif %}</button>
                         {% if edit %}
-                            {#<a class="btn btn-danger" href="{{ path('removeResource', {id: resource.id}) }}">Usuń#}
-                            {#zasób</a>#}
+                            <a class="btn btn-danger" href="{{ path('removeResource', {id: resource.id}) }}">Usuń
+                                zasób</a>
                             <a class="btn btn-info" href="{{ path('resources') }}">Powrót do listy</a>
                         {% endif %}
                     </div>

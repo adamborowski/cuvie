@@ -25,21 +25,21 @@
                placeholder="Adres email, na który wyślemy potwierdzenie">
     </div>
 </div>
-{{ common.number('liczbaDzieci') }}
-{{ common.number('liczbaDoroslych') }}
+{{ common.number('liczbaDzieci', 0) }}
+{{ common.number('liczbaDoroslych', 0) }}
 {# DOJAZD #}
 <div class="form-group">
-    <label for="dojazd" class="col-sm-2 control-label">Dojazd</label>
+    <label for="dojazd" class="col-sm-2 control-label">{{map.autokar.label}}</label>
 
     <div class="col-sm-10">
         <div class="input-group">
             <label class="radio-inline">
                 <input type="radio" name="inlineRadioOptions" id="inlineRadio1" ng-model="transport"
-                       value="own">we własnym zakresie
+                       value="own">nie
             </label>
             <label class="radio-inline">
                 <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="provided" ng-model="transport">
-                autokarem
+                tak
             </label>
 
             <div class="input-group-addon">
@@ -48,7 +48,6 @@
                     <div ng-switch-when="provided"
                          ng-bind-html-unsafe="common.apbxc(childrenScope.liczbaDzieci.value,childrenScope.liczbaDoroslych.value,map.autokar.unitPrice)"></div>
                 </div>
-
             </div>
         </div>
     </div>
