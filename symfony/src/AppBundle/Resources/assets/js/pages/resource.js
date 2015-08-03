@@ -36,12 +36,7 @@ myApp.controller('ResourceController', ['$scope', 'common', '$http', '$timeout',
         $scope.error = false;
         $http.post(myApp.formSubmitUrl, data).
             then(function (response) {
-                if (myApp.resource) {
-                    $scope.status = "creation";
-                }
-                else {
-                    $scope.status = "finish";
-                }
+                $scope.status = "creation";
             }, function (response) {
                 $scope.status = "creation";
                 $scope.error = true;
