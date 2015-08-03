@@ -62,7 +62,7 @@
                 <table class="table table-striped">
                     {% for resource in resources if resource.id not in ['organizacja'] %}
                         <tr>
-                            <th>{{ resource.longLabel }}</th>
+                            <th>{{ resource.longLabel|default(resource.label) }}</th>
                             <td>{{ summary[resource.id] }}</td>
                         </tr>
                     {% endfor %}
