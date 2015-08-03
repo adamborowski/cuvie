@@ -58,7 +58,7 @@
             {% if order.details.transport !='provided' %}
                 <td>autokarem</td>
                 <td>{{ res.autokar.unitPrice }} PLN</td>
-                <td>{{ (order.details.liczbaDzieci+order.details.liczbaDoroslych)*res.organizacja.unitPrice }}PLN
+                <td>{{ (order.details.liczbaDzieci|default(0)+order.details.liczbaDoroslych|default(0))*res.organizacja.unitPrice }}PLN
                 </td>
             {% else %}
                 <td>własny</td>
