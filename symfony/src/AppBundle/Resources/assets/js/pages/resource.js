@@ -37,6 +37,7 @@ myApp.controller('ResourceController', ['$scope', 'common', '$http', '$timeout',
         $http.post(myApp.formSubmitUrl, data).
             then(function (response) {
                 $scope.status = "creation";
+                window.location.href = myApp.backUrl;
             }, function (response) {
                 $scope.status = "creation";
                 $scope.error = true;

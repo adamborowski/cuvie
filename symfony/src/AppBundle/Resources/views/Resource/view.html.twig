@@ -9,6 +9,7 @@
     {% endjavascripts %}
     <script>
         myApp.formSubmitUrl = '{{ path('updateResource')}}{{ edit?"":"?mode=create"}}';
+        myApp.backUrl = '{{ path('resources')}}';
         {% if edit %}
         myApp.resource ={{ resource|serialize }};
         {% endif %}
