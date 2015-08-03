@@ -4,7 +4,7 @@ security:
             memory:
                 users:
                     admin:
-                        password: admin
+                        password: lokomoko
                         roles: 'ROLE_ADMIN'
 
     firewalls:
