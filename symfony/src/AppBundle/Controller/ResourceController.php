@@ -19,6 +19,9 @@ class ResourceController extends Controller
     {
         $repo = $this->getDoctrine()->getRepository("AppBundle\\Entity\\Resource");
         $resources = $repo->findBy([], ['order'=>'ASC']);
+        foreach ($resources as $resource) {
+            $resource->setRemaining($repo->getRemaining($resource->getId()));
+        }
         return $this->render('AppBundle:Resource:index.html.twig', ['resources' => $resources]);
     }
 

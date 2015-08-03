@@ -73,10 +73,10 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: "%mailer_transport%"
+    transport: smtp
     encryption: ssl
-    host:      "%mailer_host%"
+    host:      smtp.adamborowski.pl
     username:  "%mailer_user%"
     password:  "%mailer_password%"
-    logging: %kernel.debug%
     disable_delivery:  false
+    auth_mode: login

@@ -54,7 +54,7 @@
         {{ _self.item(order, res, 'liczbaDzieci','Liczba dzieci' ) }}
         {{ _self.item(order, res, 'liczbaDoroslych','Liczba dorosłych' ) }}
         <tr>
-            <th>Dojazd</th>
+            <td style="text-align: right;">Dojazd</td>
             {% if order.details.transport !='provided' %}
                 <td>autokarem</td>
                 <td>{{ res.autokar.unitPrice }} PLN</td>
