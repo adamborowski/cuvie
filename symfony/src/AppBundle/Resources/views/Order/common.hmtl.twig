@@ -17,7 +17,7 @@
                 <input type="number" class="form-control"
                        min="0" placeholder="{ config.desc + (!order&&config.remaining==0?' (brak)':'') }"
                        ng-model="value"
-                       ng-attr-max="{ order? null:config.remaining }"
+                       {#ng-attr-max="{ order? null:config.remaining }"#}
                         >
 
                 {% if calculate %}

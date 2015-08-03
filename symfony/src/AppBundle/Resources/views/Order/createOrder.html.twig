@@ -53,6 +53,9 @@
             </p>
 
             <div class="alert alert-danger" ng-show="error" role="alert">Formularz zawiera błędy, spróbuj ponownie.
+                <code style="display: block;" ng-bind-html-unsafe="errorMessage">
+
+                </code>
             </div>
             <form class="form-horizontal" name="orderForm" ng-submit="submit()" ng-show="status!='finish'"
                   ng-class="status=='pending'?'a-disabled':''">

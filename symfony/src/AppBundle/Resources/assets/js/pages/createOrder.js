@@ -84,6 +84,7 @@ myApp.controller('OrderController', ['$scope', 'common', '$http', '$timeout', fu
                 //alert('error')
                 $scope.status = "creation";
                 $scope.error = true;
+                $scope.errorMessage = response.data;
             });
     };
     $scope.order = myApp.order;

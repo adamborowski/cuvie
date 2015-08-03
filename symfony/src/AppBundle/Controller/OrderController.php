@@ -6,8 +6,10 @@ use AppBundle\Entity\Order;
 use MyProject\Proxies\__CG__\stdClass;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
@@ -98,30 +100,41 @@ class OrderController extends Controller
      */
     public function submitOrderAction(Request $request)
     {
-        $content = json_decode($request->getContent());
-        if (isset($content->id)) {
-            $order = $this->getDoctrine()->getRepository("AppBundle\\Entity\\Order")->find($content->id);
-            $order->setDetails([]);
-            $edit = true;
-        } else {
-            $order = new Order();
-            $edit = false;
+        try {
+
+            $content = json_decode($request->getContent());
+            if (isset($content->id)) {
+                $order = $this->getDoctrine()->getRepository("AppBundle\\Entity\\Order")->find($content->id);
+                $order->setDetails([]);
+                $edit = true;
+            } else {
+                $order = new Order();
+                $edit = false;
+            }
+            $order->setFirstName($content->firstName);
+            $order->setLastName($content->lastName);
+            $order->setCreationDate(new \DateTime());
+            $order->setEmail($content->email);
+            $order->setTotalPrice($content->totalPrice);
+            $order->setDetail("transport", $content->transport);
+            //todo zabezpieczyc rezerowania wiecej niz mozna (wspolbieznosc, bledy w UI)
+            $resourceRepo = $this->getDoctrine()->getRepository("AppBundle\\Entity\\Resource");
+            foreach (get_object_vars($content->details) as $name => $detail) {
+                $remaining = $resourceRepo->getRemaining($name);
+                if ($remaining == null || $remaining == 0 || $remaining >= $detail) {
+                    $order->setDetail($name, $detail);
+                } else if ($remaining < $detail) {
+                    return new Response("Not enough resource $name: $remaining remaining but $detail requested.", 412);
+                }
+            }
+            $em = $this->getDoctrine()->getEntityManager();
+            $em->persist($order);
+            $em->flush();
+            $this->sendMail($order, $edit);
+            return new Response('OK', Response::HTTP_OK);
+        } catch (\Exception $error) {
+            return new Response($error->getMessage(), 412);
         }
-        $order->setFirstName($content->firstName);
-        $order->setLastName($content->lastName);
-        $order->setCreationDate(new \DateTime());
-        $order->setEmail($content->email);
-        $order->setTotalPrice($content->totalPrice);
-        $order->setDetail("transport", $content->transport);
-        //todo zabezpieczyc rezerowania wiecej niz mozna (wspolbieznosc, bledy w UI)
-        foreach (get_object_vars($content->details) as $name => $detail) {
-            $order->setDetail($name, $detail);
-        }
-        $em = $this->getDoctrine()->getEntityManager();
-        $em->persist($order);
-        $em->flush();
-        $this->sendMail($order, $edit);
-        return new Response('OK', Response::HTTP_OK);
     }
 
     private function sendMail(Order $order, $edit)
@@ -137,7 +150,7 @@ class OrderController extends Controller
         $cnt = $this->container;
         $message = \Swift_Message::newInstance()
             ->setSubject($edit ? "Zmiana Twojej rezerwacji" : "Potwierdzenie rejestracji")
-            ->setFrom([$cnt->getParameter("respond1")=>"System rejestracji Lokomotywy"])
+            ->setFrom([$cnt->getParameter("respond1") => "System Rejestracji Lokomotywy"])
             ->setTo($order->getEmail())
             ->setBcc([$cnt->getParameter("respond1"), $cnt->getParameter("respond2")])
             ->setBody(
