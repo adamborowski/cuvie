@@ -35,10 +35,11 @@
         </div>
 
         <div class="container" style="width:900px">
+
             <h1>{{ "order.title"|trans|raw }}</h1>
 
             <p class="lead">
-
+            <p class="pull-right">{{ 'eventPlace'|trans }}, {{ 'eventDate'|trans }}</p>
             <span ng-switch="status">
                 <span ng-switch-when="creation">
                     {{ (edit ?'order.header.edit':'order.header')|trans|raw }}
@@ -51,6 +52,9 @@
                 </span>
             </span>
             </p>
+
+
+
 
             <div class="alert alert-danger" ng-show="error" role="alert">Formularz zawiera błędy, spróbuj ponownie.
                 <code style="display: block;" ng-bind-html-unsafe="errorMessage">
