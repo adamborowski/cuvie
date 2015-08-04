@@ -53,7 +53,7 @@
             {{ _self.item(order, res, 'liczbaDzieci','Liczba dzieci' ) }}
             {{ _self.item(order, res, 'liczbaDoroslych','Liczba dorosłych' ) }}
             <tr>
-                <td>Dojazd</td>
+                <td>Dojazd na start spływu</td>
                 {% if order.details.transport =='provided' %}
                     <td>autokarem</td>
                     <td>{{ res.autokar.unitPrice }} PLN</td>
@@ -66,10 +66,10 @@
                     <td>-</td>
                 {% endif %}
             </tr>
-            {{ _self.item(order, res, 'kajak','Wynajem kajaków' ) }}
-            {{ _self.item(order, res, 'canoe','Wynajem canoe' ) }}
-            {{ _self.item(order, res, 'namiot_1_noc','Wynajem namiotu na jedną noc' ) }}
-            {{ _self.item(order, res, 'namiot_2_noce','Wynajem namiotu na dwie noce' ) }}
+            {{ _self.item(order, res, 'kajak','Wynajem kajaków z transportem' ) }}
+            {{ _self.item(order, res, 'canoe','Wynajem canoe z transportem' ) }}
+            {{ _self.item(order, res, 'namiot_1_noc','Nocleg w namiocie, jedna noc' ) }}
+            {{ _self.item(order, res, 'namiot_2_noce','Nocleg w namiocie, dwie noce' ) }}
             {{ _self.item(order, res, 'domek34','Wynajem domku 3-4 osobowego na dwie noce' ) }}
             {{ _self.item(order, res, 'domek56','Wynajem domku 5-6 osobowego na dwie noce' ) }}
             {{ _self.item(order, res, 'sniadanie_so_dz','Śniadanie w sobotę, porcja dla dziecka' ) }}
