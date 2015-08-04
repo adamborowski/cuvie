@@ -16,7 +16,6 @@
                 <table class="a-table table table-striped table-hover text-nowrap">
                     <thead>
                     <tr>
-                        <th>{{ 'tab.id'|trans }}</th>
                         <th>{{ 'tab.firstName'|trans }}</th>
                         <th>{{ 'tab.lastName'|trans }}</th>
                         <th>{{ 'tab.email'|trans }}</th>
@@ -35,7 +34,6 @@
                     {% endif %}
                     {% for order in orders %}
                         <tr onclick="window.location.href='{{ path('editOrder', {id:order.id}) }}'">
-                            <td>{{ order.id }}</td>
                             <td>{{ order.firstName|highlight(subject)|raw }}</td>
                             <td>{{ order.lastName|highlight(subject)|raw }}</td>
                             <td>{{ order.email|highlight(subject)|raw }}</td>
@@ -64,7 +62,7 @@
                 <table class="table table-striped">
                     {% for resource in resources if resource.id not in ['organizacja'] %}
                         <tr>
-                            <th>{{ resource.longLabel|default(resource.label) }}</th>
+                            <th>{{ resource.longLabel }}</th>
                             <td>{{ summary[resource.id] }}</td>
                         </tr>
                     {% endfor %}
