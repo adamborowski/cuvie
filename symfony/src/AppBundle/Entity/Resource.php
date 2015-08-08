@@ -46,12 +46,11 @@ class Resource
      * @ORM\Column(type="integer", name="_order", nullable=true)
      */
     protected $order;
-
-
     /**
      * @ORM\OneToMany(targetEntity="Preference", mappedBy="resource")
      */
     private $preferences;
+    private $remaining;
 
     /**
      * Person constructor.
@@ -61,7 +60,37 @@ class Resource
         $this->preferences = new ArrayCollection();
     }
 
-    private $remaining;
+    /**
+     * @return mixed
+     */
+    public function getUnit()
+    {
+        return $this->unit;
+    }
+
+    /**
+     * @param mixed $unit
+     */
+    public function setUnit($unit)
+    {
+        $this->unit = $unit;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPreferences()
+    {
+        return $this->preferences;
+    }
+
+    /**
+     * @param mixed $preferences
+     */
+    public function setPreferences($preferences)
+    {
+        $this->preferences = $preferences;
+    }
 
     /**
      * @return mixed

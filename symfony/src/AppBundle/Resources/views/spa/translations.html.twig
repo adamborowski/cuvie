@@ -1,0 +1,15 @@
+{% set dump = [
+'app.title',
+'app.subtitle'
+] %}
+<script>
+    app.service('trans', function () {
+        var dump = {};
+        {% for key in dump %}
+        dump["{{ key }}"] = "{{ key|trans(opts|default({})) }}";
+        {% endfor %}
+        this.get = function (id) {
+            return dump[id];
+        }
+    });
+</script>

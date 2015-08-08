@@ -37,7 +37,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [AppBundle ]
+    bundles:        [AppBundle]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -46,9 +46,9 @@ assetic:
         uglifycss:
             bin: /usr/bin/uglifycss
             apply_to:   "\.css$"
-        uglifyjs2:
-            bin: /usr/bin/uglifyjs
-            apply_to:   "\.js$"
+#        uglifyjs2:
+#            bin: /usr/bin/uglifyjs
+#            apply_to:   "\.js$"
 
 # Doctrine Configuration
 doctrine:

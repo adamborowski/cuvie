@@ -25,12 +25,15 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
             <ul class="nav navbar-nav">
                 {% if is_granted('ROLE_ADMIN') %}
-                    <li class="{{ this.active('orders') }}"><a href="{{ path('orders') }}">{{ 'currencyList'|trans }}
-                            <span
-                                    class="sr-only">(current)</span></a></li>
-                    <li class="{{ this.active('resources') }}"><a href="{{ path('resources') }}">Zasoby
-                            <span
-                                    class="sr-only">(current)</span></a></li>
+                    <li class="{{ this.active('persons') }}">
+                        <a href="{{ path('persons') }}">{{ 'menu.persons'|trans }}</a>
+                    </li>
+                    <li class="{{ this.active('orders') }}">
+                        <a href="{{ path('orders') }}">{{ 'currencyList'|trans }}</a>
+                    </li>
+                    <li class="{{ this.active('resources') }}">
+                        <a href="{{ path('resources') }}">Zasoby</a>
+                    </li>
                 {% endif %}
                 <li class="{{ this.active('createOrder') }}"><a
                             href="{{ path('createOrder') }}">{{ 'createOrder'|trans }}<span

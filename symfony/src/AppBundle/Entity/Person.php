@@ -25,35 +25,35 @@ class Person
     /**
      * @var string
      *
-     * @ORM\Column(name="firstName", type="string", length=64)
+     * @ORM\Column(name="firstName", type="string", length=64, nullable=true)
      */
     private $firstName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="altFirstName", type="string", length=64)
+     * @ORM\Column(name="altFirstName", type="string", length=64, nullable=true)
      */
     private $altFirstName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="lastName", type="string", length=128)
+     * @ORM\Column(name="lastName", type="string", length=128, nullable=true)
      */
     private $lastName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="altLastName", type="string", length=128)
+     * @ORM\Column(name="altLastName", type="string", length=128, nullable=true)
      */
     private $altLastName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=128)
+     * @ORM\Column(name="email", type="string", length=128, nullable=true)
      */
     private $email;
 
@@ -69,28 +69,28 @@ class Person
      *
      * @ORM\Column(name="isAnonymous", type="boolean")
      */
-    private $isAnonymous;
+    private $isAnonymous=false;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="ord", type="integer")
+     * @ORM\Column(name="_order", type="integer", nullable=true)
      */
-    private $ord;
+    private $order;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="showOnInvitation", type="boolean")
      */
-    private $showOnInvitation;
+    private $showOnInvitation=true;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="isConfirmed", type="boolean")
      */
-    private $isConfirmed;
+    private $isConfirmed=false;
 
     /**
      * @ORM\OneToOne(targetEntity="Person")
@@ -338,20 +338,20 @@ class Person
      *
      * @return integer
      */
-    public function getOrd()
+    public function getOrder()
     {
-        return $this->ord;
+        return $this->order;
     }
 
     /**
      * Set ord
      *
-     * @param integer $ord
+     * @param integer $order
      * @return Person
      */
-    public function setOrd($ord)
+    public function setOrder($order)
     {
-        $this->ord = $ord;
+        $this->order = $order;
 
         return $this;
     }

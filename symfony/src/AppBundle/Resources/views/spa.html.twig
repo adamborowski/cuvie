@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" ng-app="WhiteVeil">
+<head>
+    {% stylesheets
+    "https://ajax.googleapis.com/ajax/libs/angular_material/0.10.0/angular-material.min.css"
+    "https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic"
+    "@AppBundle/Resources/assets/css/angular/app.scss" %}
+    <link rel="stylesheet"
+          href="{{ asset_url }}">
+    {% endstylesheets %}
+    <meta name="viewport" content="initial-scale=1"/>
+    <title>{{ 'app.title'|trans }}</title>
+</head>
+<body layout="row" ng-controller="AppController" ng-cloak>
+{% include "AppBundle::spa/sidenav.html.twig" %}
+{% include "AppBundle::spa/test.html.twig" %}
+{% block javascripts %}
+    {% javascripts
+    "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"
+    "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.min.js"
+    "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-aria.min.js"
+    "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-messages.min.js"
+    "https://ajax.googleapis.com/ajax/libs/angular_material/0.10.0/angular-material.min.js"
+    "https://cdnjs.cloudflare.com/ajax/libs/angular-material-icons/0.5.0/angular-material-icons.min.js"
+    "@AppBundle/Resources/assets/js/angular/app.js"
+    "@AppBundle/Resources/assets/js/angular/services/*.js"
+    "@AppBundle/Resources/assets/js/angular/controllers/*.js" %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    {% include "AppBundle::spa/translations.html.twig" %}
+{% endblock %}
+
+</body>
+</html>

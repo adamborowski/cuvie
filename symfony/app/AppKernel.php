@@ -19,6 +19,10 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new Lsw\ApiCallerBundle\LswApiCallerBundle(),
             new RobertoTru\ToInlineStyleEmailBundle\RobertoTruToInlineStyleEmailBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
+
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
@@ -33,6 +37,6 @@ class AppKernel extends Kernel
 
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        $loader->load($this->getRootDir().'/config/config_'.$this->getEnvironment().'.yml');
+        $loader->load($this->getRootDir() . '/config/config_' . $this->getEnvironment() . '.yml');
     }
 }

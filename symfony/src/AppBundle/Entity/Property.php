@@ -13,30 +13,44 @@ use Doctrine\ORM\Mapping as ORM;
 class Property
 {
     /**
+     * @ORM\Column(type="integer", name="_order", nullable=true)
+     */
+    protected $order;
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="string")
      * @ORM\Id
      */
     private $id;
-
     /**
      * @var string
      *
      * @ORM\Column(name="_label", type="string", length=100, nullable=true)
      */
     private $label;
-
     /**
      * @var string
      *
      * @ORM\Column(name="value", type="string", length=255, nullable=true)
      */
     private $value;
+
     /**
-     * @ORM\Column(type="integer", name="_order", nullable=true)
+     * @return mixed
      */
-    protected $order;
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
+    /**
+     * @param mixed $order
+     */
+    public function setOrder($order)
+    {
+        $this->order = $order;
+    }
 
     /**
      * Get id
@@ -46,6 +60,16 @@ class Property
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Get label
+     *
+     * @return string
+     */
+    public function getlabel()
+    {
+        return $this->label;
     }
 
     /**
@@ -62,13 +86,13 @@ class Property
     }
 
     /**
-     * Get label
+     * Get value
      *
-     * @return string 
+     * @return string
      */
-    public function getlabel()
+    public function getValue()
     {
-        return $this->label;
+        return $this->value;
     }
 
     /**
@@ -82,15 +106,5 @@ class Property
         $this->value = $value;
 
         return $this;
-    }
-
-    /**
-     * Get value
-     *
-     * @return string 
-     */
-    public function getValue()
-    {
-        return $this->value;
     }
 }
