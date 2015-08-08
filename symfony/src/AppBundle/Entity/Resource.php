@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -34,6 +35,10 @@ class Resource
      */
     protected $unitPrice;
     /**
+     * @ORM\Column(type="string", length=64, nullable=true)
+     */
+    protected $unit;
+    /**
      * @ORM\Column(type="integer", nullable=true)
      */
     protected $available;
@@ -41,6 +46,21 @@ class Resource
      * @ORM\Column(type="integer", name="_order", nullable=true)
      */
     protected $order;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="Preference", mappedBy="resource")
+     */
+    private $preferences;
+
+    /**
+     * Person constructor.
+     */
+    public function __construct()
+    {
+        $this->preferences = new ArrayCollection();
+    }
+
     private $remaining;
 
     /**

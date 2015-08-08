@@ -22,7 +22,9 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "leaseweb/api-caller-bundle": "~1.1",
         "sensio/generator-bundle": "~2.3",
-        "robertotru/to-inline-style-email-bundle": "dev-master"
+        "robertotru/to-inline-style-email-bundle": "dev-master",
+        "friendsofsymfony/jsrouting-bundle": "^1.5",
+        "friendsofsymfony/rest-bundle": "^1.7"
     },
     "require-dev": {
 

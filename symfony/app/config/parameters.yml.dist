@@ -7,19 +7,19 @@ parameters:
     database_user:     srrceiazwsthqh
     database_password: heEGl2PVBtQ-wmMsGU2ckrwNZP
 
-    mailer_transport:  gmail
-    mailer_host:       ~
-    mailer_user:       lokomotywa.dev@gmail.com
-    mailer_password:   lokomoko
+    mailer_transport:  smtp
+    mailer_host:       mail.adamborowski.pl
+    mailer_user:       kontakt@adamborowski.pl
+    mailer_password:   XHIKmg7E
 
     locale:            pl
     locales:           [en, pl]
     # A secret key that's used to generate certain security-related tokens
-    secret:            iaiadshadshiasyut76t76763tcachisu
+    secret:            iaiadshadsasdiasyut76t76763tcachisu
     #---------------
-    nbp_index: http://www.nbp.pl/kursy/xml/dir.txt
-    nbp_base: http://www.nbp.pl/kursy/xml/
-    acq_start: "070101"
-    acq_end: "141231"
-    respond1: wypoczynek@lokomotywa.edu.pl
+    nbp_index: http://www.nbp.pl/kursy/xml/dir.txt # todo remove
+    nbp_base: http://www.nbp.pl/kursy/xml/ # todo remove
+    acq_start: "070101" # todo remove
+    acq_end: "141231" # todo remove
+    respond1: slub@adamborowski.pl
     respond2: fl.borovsky@gmail.com
