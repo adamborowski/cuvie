@@ -60,7 +60,7 @@ class Person
     /**
      * @var boolean
      *
-     * @ORM\Column(name="isMale", type="boolean")
+     * @ORM\Column(name="isMale", type="boolean", nullable=true)
      */
     private $isMale;
 
