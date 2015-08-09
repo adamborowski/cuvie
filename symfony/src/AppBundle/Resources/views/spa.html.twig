@@ -13,8 +13,17 @@
     <title>{{ 'app.title'|trans }}</title>
 </head>
 <body layout="row" ng-controller="AppController" ng-cloak>
-{% include "AppBundle::spa/sidenav.html.twig" %}
-{% include "AppBundle::spa/test.html.twig" %}
+{% block leftcolumn %}
+    {% include "AppBundle::spa/menu.html.twig" %}
+{% endblock %}
+{% block rightcolumn %}
+    <div layout="column" flex class="a-main-content">
+        {% include "AppBundle::spa/header.html.twig" %}
+        {% block content %}
+            {% include "AppBundle::spa/content.html.twig" %}
+        {% endblock %}
+    </div>
+{% endblock %}
 {% block javascripts %}
     {% javascripts
     "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"
