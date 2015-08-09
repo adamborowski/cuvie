@@ -4,7 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-
+use JMS\Serializer\Annotation as JMS;
 /**
  * Person
  *
@@ -94,14 +94,17 @@ class Person
 
     /**
      * @ORM\OneToOne(targetEntity="Person")
+     * @JMS\Type("RestBundle\Serializer\ForeignKeyType")
      **/
     private $partner;
     /**
      * @ORM\ManyToOne(targetEntity="Invitation", inversedBy="persons")
+     * @JMS\Type("RestBundle\Serializer\ForeignKeyType")
      */
     private $invitation;
     /**
      * @ORM\OneToMany(targetEntity="Preference", mappedBy="person", cascade={"all"})
+     * @JMS\Exclude
      */
     private $preferences;
 

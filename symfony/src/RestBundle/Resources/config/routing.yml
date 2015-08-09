@@ -1,0 +1,3 @@
+rest_person:
+    type:     rest
+    resource: RestBundle\Controller\PersonController
