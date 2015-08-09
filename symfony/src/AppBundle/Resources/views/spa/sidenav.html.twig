@@ -1,8 +1,33 @@
 <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
-    <md-toolbar class="md-theme-indigo">
+    <md-toolbar class="md-hue-2" layout="row" layout-padding="20">
         {% image '@AppBundle/Resources/assets/images/rings.png' %}
-        <img src="{{ asset_url }}"/>
+        <img class="png-icon" src="{{ asset_url }}"/>
         {% endimage %}
         <h1 class="md-toolbar-tools">{{ 'app.title'|trans }}</h1>
     </md-toolbar>
+    <md-list class="a-dark-icons" ng-controller="MenuCtrl">
+        <md-list-item ng-click="null">
+            <ng-md-icon icon="dashboard"></ng-md-icon>
+            <p>Dashboard</p>
+        </md-list-item>
+        <md-list-item ng-click="null">
+            <ng-md-icon icon="group"></ng-md-icon>
+            <p>Friends</p>
+        </md-list-item>
+        <md-list-item ng-click="null">
+            <ng-md-icon icon="message"></ng-md-icon>
+            <p>Messages</p>
+        </md-list-item>
+
+        <md-divider></md-divider>
+        <md-subheader layout="md-no-sticky">Management</md-subheader>
+        <md-list-item ng-click="null">
+            <ng-md-icon icon="delete"></ng-md-icon>
+            <p>Trash</p>
+        </md-list-item>
+        <md-list-item ng-click="null">
+            <ng-md-icon icon="settings"></ng-md-icon>
+            <p>Settings</p>
+        </md-list-item>
+    </md-list>
 </md-sidenav>

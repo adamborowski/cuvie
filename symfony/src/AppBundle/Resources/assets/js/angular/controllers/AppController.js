@@ -15,3 +15,15 @@ app.controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
     };
 });
 
+app.controller('MenuCtrl', function($scope, $mdDialog) {
+    $scope.navigateTo = function(to, event) {
+        $mdDialog.show(
+            $mdDialog.alert()
+                .title('Navigating')
+                .content('Imagine being taken to ' + to)
+                .ariaLabel('Navigation demo')
+                .ok('Neat!')
+                .targetEvent(event)
+        );
+    };
+});

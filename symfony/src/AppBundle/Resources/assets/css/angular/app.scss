@@ -1,6 +1,22 @@
-md-content.md-default-theme {
+.a-main-content{
   background-color: #eee;
 }
-ng-md-icon{
-  fill:white;
+
+.a-card-padding {
+  margin: 20px;
+}
+
+.a-light-icons ng-md-icon {
+  fill: white;
+}
+
+.a-dark-icons ng-md-icon {
+  fill: #737373;
+}
+
+ng-md-icon {
+  height: 27px;
+  width: 24px;
+  margin-right: 10px;
+
 }
