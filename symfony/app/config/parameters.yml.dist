@@ -23,3 +23,4 @@ parameters:
     acq_end: "141231" # todo remove
     respond1: slub@adamborowski.pl
     respond2: fl.borovsky@gmail.com
+    jms_serializer.camel_case_naming_strategy.class: JMS\Serializer\Naming\IdenticalPropertyNamingStrategy

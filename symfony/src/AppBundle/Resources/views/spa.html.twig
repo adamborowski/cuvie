@@ -3,8 +3,8 @@
 <head>
     {% stylesheets
     "https://ajax.googleapis.com/ajax/libs/angular_material/0.10.0/angular-material.min.css"
-    "https://fonts.googleapis.com/icon?family=Material+Icons"
-    "https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic"
+    "@AppBundle/Resources/public/MaterialIcons.css"
+    "@AppBundle/Resources/public/RoboDraft.css"
     "@AppBundle/Resources/assets/css/angular/app.scss" %}
     <link rel="stylesheet"
           href="{{ asset_url }}">
@@ -26,6 +26,8 @@
 {% endblock %}
 {% block javascripts %}
     {% javascripts
+    "bundles/fosjsrouting/js/router.js"
+    "js/fos_js_routes.js"
     "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"
     "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.min.js"
     "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-aria.min.js"

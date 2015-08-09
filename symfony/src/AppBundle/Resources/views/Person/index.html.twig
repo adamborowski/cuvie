@@ -1,1 +1,22 @@
 {% extends 'AppBundle::spa.html.twig' %}
+{% block content %}
+    <md-tabs flex md-stretch-tabs="always" class="md-primary">
+        <md-tab label="{{ 'tab.persons'|trans }}">
+            <md-tab-body>
+                <md-card class="a-card-padding" ng-controller="PersonsController" ng-disabled="loading">
+                    <md-card-content>
+                        <md-list>
+                            <md-list-item ng-repeat="person in persons" ng-click="true">
+                                <p>:{person.firstName }: :{person.lastName}:</p>
+                            </md-list-item>
+                        </md-list>
+                    </md-card-content>
+                    <div class="md-actions" layout="row" layout-align="end center">
+                        <md-button>Action 1</md-button>
+                        <md-button>Action 2</md-button>
+                    </div>
+                </md-card>
+            </md-tab-body>
+        </md-tab>
+    </md-tabs>
+{% endblock %}

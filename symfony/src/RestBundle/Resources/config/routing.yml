@@ -1,3 +1,5 @@
 rest_person:
     type:     rest
     resource: RestBundle\Controller\PersonController
+    options:
+        expose: true
